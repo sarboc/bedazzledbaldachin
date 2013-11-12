@@ -30,6 +30,8 @@ group :development, :test do
   gem 'pry'
   gem 'pry-rails'
   gem 'quiet_assets'
+  gem "nyan-cat-formatter"
+  gem 'konacha'
 end
 
 # To use ActiveModel has_secure_password
