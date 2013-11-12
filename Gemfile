@@ -13,6 +13,7 @@ gem 'figaro'
 
 gem 'twilio-ruby'
 
+gem 'wordnik'
 
 # Gems used only for assets and not required
 # in production environments by default.
