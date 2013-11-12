@@ -9,6 +9,10 @@ gem 'pg'
 
 gem 'devise'
 
+gem 'figaro'
+
+gem 'twilio-ruby'
+
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -33,6 +37,8 @@ group :development, :test do
   gem "nyan-cat-formatter"
   gem 'konacha'
 end
+
+
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
