@@ -1,0 +1,23 @@
+Seed file:
+Partner (App assigns partner):
+1. Duo needs to name 10 candy bars - first group to name 10 wins
+  - Rating: PG
+2. Duo needs to each share one guilty pleasure with the other. And then share with the group.
+  - Rating: PG-13
+3. What did 10 year old you think you'd be doing now?
+  - Rating: PG
+4. What have you felt guilty about in the last 6 months?
+  - Rating: PG-13
+5. Where's your favorite place in the world? Why?
+  - Rating: PG
+
+Group:
+1. Answer the question: If you could make something that's not socially acceptable, acceptable. What would it be?
+  - Rating: PG-13
+2. Answer the question:
+3. Never have I ever
+  - Rating: PG-13
+4. What's the craziest thing you have ever done?
+  - Rating: R
+5. What's the most embarrasing thing that's happened to you during sex?
+  - Rating: R
