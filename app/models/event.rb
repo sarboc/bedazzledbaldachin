@@ -5,7 +5,6 @@ class Event < ActiveRecord::Base
   has_many :users, through: :event_users
   has_many :event_prompts, dependent: :destroy
   has_many :prompts, through: :event_prompts
-  belongs_to :event_user
   belongs_to :rating
   belongs_to :party_type
 
