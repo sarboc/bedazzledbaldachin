@@ -30,7 +30,7 @@ ratings = Rating.create [
 prompts = Prompt.create [
   {
     description: "Almonds. Discuss.",
-    rating: 1
+    rating: 1,
   }, {
     description: "Think about your first kiss. What face did you just make, and why?",
     rating: 2
