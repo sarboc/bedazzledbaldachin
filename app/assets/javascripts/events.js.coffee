@@ -12,8 +12,12 @@ $ ->
     $("#phone").val("")
 
     $.post("/players", params).done (data) ->
-      $('#player-list').append('<li>' + $name + ': ' + $phone + '</li>' )
 
-
+    $.ajax({
+      url: '/events/'+ $event_id + '.json',
+      method: 'GET'
+    }).done (data) ->
+      data.each (d) ->
+        $('#player-list').append('<li>' + d.name + ': ' + d.phone + '</li>' )
 
 

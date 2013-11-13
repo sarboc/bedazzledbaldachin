@@ -20,10 +20,13 @@ class EventsController < ApplicationController
     @id = params[:id]
     @event = Event.find(@id)
     party_meister = Player.create(name: current_user.name, phone: current_user.phone, event_id: @id)
-    puts "************"
-    p party_meister
-
     @players = Player.find_by_event_id(@id)
+
+    respond_to do |format|
+      format.json {
+        render :json => @players
+      }
+    end
   end
 
 end
