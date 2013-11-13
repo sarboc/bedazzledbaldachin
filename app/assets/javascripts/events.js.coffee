@@ -6,13 +6,18 @@ $ ->
     event.preventDefault()
     $phone = $("#phone").val()
     $name = $("#name").val()
-    console.log $phone
-    console.log $name
-    params = { player: { phone: $phone, name: $name}}
+    $event_id = $("#event_id").val()
+    params = { player: { phone: $phone, name: $name, event_id: $event_id}}
+    $("#name").val("")
+    $("#phone").val("")
 
     $.post("/players", params).done (data) ->
-      $('#player-list').append('<li>' + $name + ': ' + $phone + '</li>' )
 
-
+    $.ajax({
+      url: '/events/'+ $event_id + '.json',
+      method: 'GET'
+    }).done (data) ->
+      data.each (d) ->
+        $('#player-list').append('<li>' + d.name + ': ' + d.phone + '</li>' )
 
 

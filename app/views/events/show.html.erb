@@ -1,0 +1,16 @@
+<%= @event.party_type_id %>
+<%= @event.start_time %>
+<%= @event.end_time %>
+<%= @event.wordnik %>
+
+<p>Invite Players:</p>
+<div id="player-form">
+  <form role="form">
+    Name: <input type="text" id="name" name="name">
+    Phone Number: <input type="text" id="phone" name="phone">
+    <input type="hidden" id="event_id" value="<%= @id %>" >
+    <button id="add-player">Add User</button>
+  </form>
+</div>
+<div id="player-list">
+</div>

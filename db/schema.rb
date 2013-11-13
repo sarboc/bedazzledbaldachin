@@ -30,6 +30,7 @@ ActiveRecord::Schema.define(:version => 20131112055817) do
     t.string   "wordnik"
     t.integer  "party_type_id"
     t.integer  "rating_id"
+    t.integer  "user_id"
     t.datetime "created_at",                      :null => false
     t.datetime "updated_at",                      :null => false
   end
@@ -49,7 +50,7 @@ ActiveRecord::Schema.define(:version => 20131112055817) do
 
   create_table "players", :force => true do |t|
     t.integer  "event_id"
-    t.integer  "name"
+    t.string   "name"
     t.string   "phone"
     t.datetime "start_time"
     t.datetime "end_time"
@@ -85,7 +86,8 @@ ActiveRecord::Schema.define(:version => 20131112055817) do
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
-    t.integer  "phone",                                  :null => false
+    t.string   "phone",                                  :null => false
+    t.string   "name"
     t.datetime "created_at",                             :null => false
     t.datetime "updated_at",                             :null => false
   end

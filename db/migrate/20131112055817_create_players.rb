@@ -2,7 +2,7 @@ class CreatePlayers < ActiveRecord::Migration
   def change
     create_table :players do |t|
       t.references :event
-      t.integer :name
+      t.string :name
       t.string :phone
       t.datetime :start_time
       t.datetime :end_time

@@ -1,6 +1,7 @@
 class PlayersController < ApplicationController
   def create
-    @player = Player.create(params[:player])
+    player_info = params[:player]
+    @player = Player.create(player_info)
     render :json => @player
   end
 end

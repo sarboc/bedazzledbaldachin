@@ -1,5 +1,5 @@
 class Event < ActiveRecord::Base
-  attr_accessible :end_time, :event_status, :rating_id, :start_time, :wordnik, :party_type_id
+  attr_accessible :end_time, :user_id, :event_status, :rating_id, :start_time, :wordnik, :party_type_id
 
   has_many :players, dependent: :destroy
   has_many :event_prompts, dependent: :destroy
@@ -13,6 +13,7 @@ class Event < ActiveRecord::Base
 
   after_create :add_start_end_time
   after_create :add_wordnik
+  # after_create :add_user_id
 
   def add_start_end_time
     # set start time to now
@@ -23,6 +24,7 @@ class Event < ActiveRecord::Base
   end
 
   def add_wordnik
+
     # get two random words from wordnik
     word1 = get_random_word
     word2 = get_random_word
@@ -47,6 +49,11 @@ class Event < ActiveRecord::Base
     # excludePartsOfSpeech: "proper-noun-possessive" - excludes possessive proper nouns such as "Steve's"
     # result is a hash, and we want the value of the ["word"] key
     Wordnik.words.get_random_word(maxLength: 7, includePartOfSpeech: "noun", excludePartOfSpeech: "proper-noun", excludePartOfSpeech: "proper-noun-plural", excludePartOfSpeech: "proper-noun-posessive")["word"]
+    self.wordnik = "watermelon icepick"
   end
+
+  # def add_user_id
+  #   self.user_id = current_user.id
+  # end
 
 end

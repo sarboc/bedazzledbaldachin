@@ -1,19 +1,6 @@
 <h1>Leder Feier</h1>
 <h3>Where parties are made</h3>
-<% if current_user.present? %>
-  <div class="welcome">
-    <div class="top_right">
-      <%= link_to 'Sign Out', destroy_user_session_path, :method => :delete %>
-    </div>
-  <div class="alert alert-success">Welcome <%= current_user.email %></div>
-<%# user is logged in, show log out link %>
-<%# user is not logged in, show signup and login links %>
-<% else %>
-<div class="main">
-  <%= link_to 'Sign In', new_user_session_path %> |
-  <%= link_to 'Register Now!', new_user_registration_path %>
-<% end %>
-</div>
+
 <div class="buttons">
   <%= link_to "Dinner with Friends", new_event_path(party_type_id: 1), id: "dinner", class: "btn btn-primary cat", :method => :get %>
   <%= link_to "Raucous Gathering", new_event_path(party_type_id: 2), id: "dinner", class: "btn btn-primary cat", :method => :get %>

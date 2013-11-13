@@ -7,6 +7,7 @@ class CreateEvents < ActiveRecord::Migration
       t.string :wordnik
       t.references :party_type
       t.references :rating
+      t.references :user
 
       t.timestamps
     end
