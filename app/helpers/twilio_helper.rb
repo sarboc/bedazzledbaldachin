@@ -10,6 +10,8 @@ module TwilioHelper
     if player
       # person belongs to a game, so send them a message
       case message
+        when "y"
+          "Cool! we are going to send u some badasss prompts soon!"
         when "done"
           # mark prompt as done and send new prompt
           "done"

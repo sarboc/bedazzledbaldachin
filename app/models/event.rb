@@ -11,9 +11,8 @@ class Event < ActiveRecord::Base
   validates :rating_id, presence: true
   validates :party_type_id, presence: true
 
-  after_create :add_start_end_time
+  # after_create :add_start_end_time
   after_create :add_wordnik
-  # after_create :add_user_id
 
   def add_start_end_time
     # set start time to now
