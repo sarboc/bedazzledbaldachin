@@ -9,6 +9,8 @@ $ ->
     console.log $phone
     console.log $name
     params = { player: { phone: $phone, name: $name}}
+    $("#name").val("")
+    $("#phone").val("")
 
     $.post("/players", params).done (data) ->
       $('#player-list').append('<li>' + $name + ': ' + $phone + '</li>' )
