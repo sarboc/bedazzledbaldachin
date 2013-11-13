@@ -5,8 +5,8 @@ class CreateEvents < ActiveRecord::Migration
       t.datetime :start_time
       t.datetime :end_time
       t.string :wordnik
-      t.integer :party_type_id
-      t.integer :rating_id
+      t.references :party_type
+      t.references :rating
 
       t.timestamps
     end

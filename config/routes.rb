@@ -2,8 +2,8 @@ Bedazzle::Application.routes.draw do
 
   devise_for :users
 
-  get "events/index"
-
-root to: "events#index"
+  root to: "events#index"
+  resources :events
+  resources :players, :only => [:create]
 
 end

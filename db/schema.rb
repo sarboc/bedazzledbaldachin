@@ -11,6 +11,86 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 0) do
+ActiveRecord::Schema.define(:version => 20131112055817) do
+
+  create_table "event_prompts", :force => true do |t|
+    t.integer  "event_id"
+    t.integer  "prompt_id"
+    t.integer  "user_event_id"
+    t.boolean  "completed",     :default => false
+    t.boolean  "passed",        :default => false
+    t.datetime "created_at",                       :null => false
+    t.datetime "updated_at",                       :null => false
+  end
+
+  create_table "events", :force => true do |t|
+    t.boolean  "event_status"
+    t.datetime "start_time"
+    t.datetime "end_time"
+    t.string   "wordnik"
+    t.integer  "party_type_id"
+    t.integer  "rating_id"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
+  end
+
+  create_table "party_type_prompts", :force => true do |t|
+    t.integer  "prompt_id"
+    t.integer  "party_type_id"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
+  end
+
+  create_table "party_types", :force => true do |t|
+    t.string   "description"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
+  create_table "players", :force => true do |t|
+    t.integer  "event_id"
+    t.integer  "name"
+    t.string   "phone"
+    t.datetime "start_time"
+    t.datetime "end_time"
+    t.integer  "user_passes", :default => 0
+    t.boolean  "accepted",    :default => false
+    t.datetime "created_at",                     :null => false
+    t.datetime "updated_at",                     :null => false
+  end
+
+  create_table "prompts", :force => true do |t|
+    t.text     "description"
+    t.text     "requirements"
+    t.integer  "rating_id"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+  end
+
+  create_table "ratings", :force => true do |t|
+    t.string   "name"
+    t.integer  "value"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "users", :force => true do |t|
+    t.string   "email",                  :default => "", :null => false
+    t.string   "encrypted_password",     :default => "", :null => false
+    t.string   "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.integer  "sign_in_count",          :default => 0,  :null => false
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.string   "current_sign_in_ip"
+    t.string   "last_sign_in_ip"
+    t.integer  "phone",                                  :null => false
+    t.datetime "created_at",                             :null => false
+    t.datetime "updated_at",                             :null => false
+  end
+
+  add_index "users", ["email"], :name => "index_users_on_email", :unique => true
+  add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
 
 end

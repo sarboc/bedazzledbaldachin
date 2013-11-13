@@ -1,8 +1,8 @@
 class CreatePartyTypePrompts < ActiveRecord::Migration
   def change
     create_table :party_type_prompts do |t|
-      t.integer :prompt_id
-      t.integer :party_type_id
+      t.references :prompt
+      t.references :party_type
 
       t.timestamps
     end
