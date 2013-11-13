@@ -1,10 +1,24 @@
+Miriam Notes:
+
 ========= LEDERFEIER.COM ===========
 Amazeballs party app!!!
 
-Facebook Integration according to http://railscasts.com/episodes/360-facebook-authentication?view=asciicast:
+Facebook Integration according to https://github.com/plataformatec/devise/wiki/OmniAuth:-Overview:
 - created app on FB and added permissions
 - bought domain
 - added gemfile for oauth
+- added stuff in docs
+- added line to sessions new-view
 
 
 rspec mocks stub to test methods that call an api (but we are not calling the twiwlio api because it makes a request to us)
+
+always
+- rake db drop
+- rake db create
+- rake db migrate
+- rake db seed
+after a rebase
+
+
+git diff --color in terminal

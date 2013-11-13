@@ -1,9 +1,8 @@
 class EventsController < ApplicationController
-  before_filter :authenticate_user!
+  #before_filter :authenticate_user!
 # Get twilio-ruby from twilio.com/docs/ruby/install
 
   def index
-
   end
 
   def new
