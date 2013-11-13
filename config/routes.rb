@@ -4,9 +4,9 @@ Bedazzle::Application.routes.draw do
   resources :send_texts
   resources :receive_texts
 
-  get "events/index"
-
-root to: "events#index"
+  root to: "events#index"
+  resources :events
+  resources :players, :only => [:create]
 
   get "send_texts" => 'send_texts#index'
   match "receive_texts" => 'receive_texts#index'

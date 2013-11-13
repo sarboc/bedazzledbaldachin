@@ -1,8 +1,9 @@
-class CreateEventUsers < ActiveRecord::Migration
+class CreatePlayers < ActiveRecord::Migration
   def change
-    create_table :event_users do |t|
-      t.references :user
+    create_table :players do |t|
       t.references :event
+      t.integer :name
+      t.string :phone
       t.datetime :start_time
       t.datetime :end_time
       t.integer :user_passes, default: 0

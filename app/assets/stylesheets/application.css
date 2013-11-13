@@ -12,3 +12,21 @@
  *= require_self
  *= require_tree .
  */
+
+.container {
+  width: 300px;
+  margin: auto;
+  border: 1px solid black;
+}
+
+.top_right {
+  position: absolute;
+  top:1px;
+  right:3px;
+}
+
+.cat {
+  width: 250px;
+  margin: 0 auto;
+  margin-bottom: 10px;
+}

@@ -3,7 +3,7 @@ class CreatePrompts < ActiveRecord::Migration
     create_table :prompts do |t|
       t.text :description
       t.text :requirements
-      t.integer :rating_id
+      t.references :rating
 
       t.timestamps
     end

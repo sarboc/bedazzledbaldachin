@@ -23,17 +23,6 @@ ActiveRecord::Schema.define(:version => 20131112055817) do
     t.datetime "updated_at",                       :null => false
   end
 
-  create_table "event_users", :force => true do |t|
-    t.integer  "user_id"
-    t.integer  "event_id"
-    t.datetime "start_time"
-    t.datetime "end_time"
-    t.integer  "user_passes", :default => 0
-    t.boolean  "accepted",    :default => false
-    t.datetime "created_at",                     :null => false
-    t.datetime "updated_at",                     :null => false
-  end
-
   create_table "events", :force => true do |t|
     t.boolean  "event_status"
     t.datetime "start_time"
@@ -56,6 +45,18 @@ ActiveRecord::Schema.define(:version => 20131112055817) do
     t.string   "description"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
+  end
+
+  create_table "players", :force => true do |t|
+    t.integer  "event_id"
+    t.integer  "name"
+    t.string   "phone"
+    t.datetime "start_time"
+    t.datetime "end_time"
+    t.integer  "user_passes", :default => 0
+    t.boolean  "accepted",    :default => false
+    t.datetime "created_at",                     :null => false
+    t.datetime "updated_at",                     :null => false
   end
 
   create_table "prompts", :force => true do |t|

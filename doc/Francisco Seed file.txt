@@ -14,10 +14,9 @@ Partner (App assigns partner):
 Group:
 1. Answer the question: If you could make something that's not socially acceptable, acceptable. What would it be?
   - Rating: PG-13
-2. Answer the question:
-3. Never have I ever
+2. Never have I ever
   - Rating: PG-13
-4. What's the craziest thing you have ever done?
+3. What's the craziest thing you have ever done?
   - Rating: R
-5. What's the most embarrasing thing that's happened to you during sex?
+4. What's the most embarrasing thing that's happened to you during sex?
   - Rating: R
