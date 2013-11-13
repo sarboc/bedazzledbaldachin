@@ -3,7 +3,7 @@ class CreateEventPrompts < ActiveRecord::Migration
     create_table :event_prompts do |t|
       t.references :event
       t.references :prompt
-      t.references :user_event
+      t.references :player
       t.boolean :completed, default: false
       t.boolean :passed, default: false
 

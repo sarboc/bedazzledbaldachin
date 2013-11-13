@@ -13,17 +13,40 @@ describe TwilioHelper do
 
   describe "parse_message" do
 
-    it "should have created a fake player" do
-      player.name.should == name
-      player.phone.should == phone
-    end
-
-    it "should return done when the message is done" do
-      parse_message(player.phone, "done").should == "done"
-    end
-
     it "should return an error if a messager is not a player" do
       parse_message(invalid_phone, "anything") == "We don't know who you are. Sorry. Visit www.lederfeier.com to learn more."
+    end
+
+    describe "done" do
+
+      it "should return done when the message is done" do
+        parse_message(player.phone, "done").should == "done"
+      end
+
+    end
+
+    describe "pass" do
+
+      it "should return pass when the message is pass" do
+        parse_message(player.phone, "pass").should == "pass"
+      end
+
+    end
+
+    describe "leave" do
+
+      it "should return leave when the message is leave" do
+        parse_message(player.phone, "leave").should == "leave"
+      end
+
+    end
+
+    describe "unknown message" do
+
+      it "should return helpful error message when it doesn't know a message" do
+        parse_message(player.phone, "next").should == "I don't know that"
+      end
+
     end
 
 

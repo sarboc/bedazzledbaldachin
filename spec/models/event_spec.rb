@@ -42,7 +42,6 @@ describe Event do
 
   it "should have an end time 3 hours after end time" do
     event.end_time.should == event.start_time + 60 * 60 * 3
-    (event.end_time.hour - event.start_time.hour).should == 3
   end
 
   it "should belong to party_type" do
