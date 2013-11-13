@@ -15,7 +15,7 @@ def index
   @message = @account.sms.messages.create({
     :from => '+16018034035',
     :to => '+15103755091',
-    :body => 'some text'})
+    :body => 'Howdie <<name here>>: You got an invite from <<partymeistersname>> to join a LEDERFEIER! Text back [ACCEPT + YourName] or [DECLINE + YourName]'})
   puts @message
 
 end
