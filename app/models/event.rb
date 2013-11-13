@@ -13,6 +13,11 @@ class Event < ActiveRecord::Base
 
   after_create :add_start_end_time
   after_create :add_wordnik
+  after_create :add_owner
+
+  def add_owner
+    self.owner_id = current_user.id
+  end
 
   def add_start_end_time
     # set start time to now

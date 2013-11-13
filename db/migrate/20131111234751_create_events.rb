@@ -8,6 +8,8 @@ class CreateEvents < ActiveRecord::Migration
       t.references :party_type
       t.references :rating
 
+      # MK addition
+      t.integer :owner_id
       t.timestamps
     end
   end

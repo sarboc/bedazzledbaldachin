@@ -2,6 +2,7 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
 $ ->
+	$('#player-list').append('<li>' + @owner.name + ': ' + @wner.phone + '</li>' )
   $('#add-player').click ->
     event.preventDefault()
     $phone = $("#phone").val()
@@ -12,7 +13,3 @@ $ ->
 
     $.post("/players", params).done (data) ->
       $('#player-list').append('<li>' + $name + ': ' + $phone + '</li>' )
-
-
-
-
