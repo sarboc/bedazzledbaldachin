@@ -8,7 +8,13 @@ class Player < ActiveRecord::Base
   validates :name, presence: true
   validates :phone, presence: true
   validates :event_id, presence: true
-  validates :start_time, presence: true
-  validates :end_time, presence: true
+  # validates :start_time, presence: true
+  # validates :end_time, presence: true
 
+  after_create :add_start_end_time
+
+  def add_start_end_time
+    self.start_time = Time.now
+    self.end_time = self.start_time + 60 * 60 * 3
+  end
 end

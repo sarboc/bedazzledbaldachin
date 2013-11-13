@@ -6,9 +6,10 @@ $ ->
     event.preventDefault()
     $phone = $("#phone").val()
     $name = $("#name").val()
+    $event_id = $("#event_id").val()
     console.log $phone
     console.log $name
-    params = { player: { phone: $phone, name: $name}}
+    params = { player: { phone: $phone, name: $name, event_id: $event_id}}
     $("#name").val("")
     $("#phone").val("")
 

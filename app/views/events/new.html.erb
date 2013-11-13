@@ -1,16 +1,6 @@
 <%= form_for @event do |f| %>
   <p>Select a rating:</p>
   <%= f.select(:rating_id, options_for_select([['PG', 1],['PG-13', 2],['R', 3]])) %>
-<%= f.submit %>
+  <%= f.hidden_field :party_type_id, value: @party_type_id %>
+  <%= f.submit %>
 <% end %>
-
-<p>Invite Players:</p>
-<div id="player-form">
-  <form role="form">
-    Name: <input type="text" id="name" name="name">
-    Phone Number: <input type="text" id="phone" name="phone">
-    <button id="add-player">Add User</button>
-  </form>
-</div>
-<div id="player-list">
-</div>
