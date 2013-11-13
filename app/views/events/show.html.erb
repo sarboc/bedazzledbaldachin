@@ -13,4 +13,10 @@
   </form>
 </div>
 <div id="player-list">
+  <% @players.each do |p| %>
+    <%= p.name %> :
+    <%= p.phone %> :
+    <%= p.accepted ? "Accepted" : "Pending" %> <br>
+  <% end %>
 </div>
+<button id="start-party" class="btn btn-primary" value="<%= @id %>">Start the Party</button>
