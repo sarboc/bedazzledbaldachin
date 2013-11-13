@@ -11,7 +11,7 @@ $ ->
     params = { player: { phone: $phone, name: $name}}
 
     $.post("/players", params).done (data) ->
-      $('#player-list').append('<li>' + $phone + '</li><br><li>' + $name + '</li>' )
+      $('#player-list').append('<li>' + $name + ': ' + $phone + '</li>' )
 
 
 
