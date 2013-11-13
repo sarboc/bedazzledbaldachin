@@ -10,7 +10,7 @@ require 'twilio-ruby'
   #   # # from_number = params["From"]
 
     # SMSLogger.log_text_message from_number, message_body
-
+    @phone = params[:From]
     @city = params[:FromCity]
     @state = params[:FromState]
     @reply = params[:Body]

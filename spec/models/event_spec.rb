@@ -1,25 +1,29 @@
 require 'spec_helper'
 
+
 describe Event do
-  let(:party) {
-    PartyType.create(
-      description: "Super fun party!"
-    )
+  before :each do
+    Event.any_instance.stub(:get_random_word).and_return("watermelon", "icepick")
+  end
+
+  let(:party) { PartyType.create(description: "Super fun party!") }
+  let(:party2) { PartyType.create(description: "Boring party!") }
+
+  let(:rating) { Rating.create(name: "Super blush", value: 2) }
+  let(:rating2) { Rating.create(name: "No blush", value: 1) }
+
+  let(:event) { Event.create(party_type_id: party.id, rating_id: rating.id) }
+
+  let(:prompt1) {
+    Prompt.create( description: "Do something fun!", rating_id: rating.id)
+    party.prompts << prompt1
   }
 
-  let(:rating) {
-    Rating.create(
-      name: "Super blush",
-      value: 2
-    )
+  let(:prompt2) {
+    Prompt.create(description: "Do something boring!", rating_id: rating2.id)
+    party2.prompts << prompt2
   }
 
-  let(:event) {
-    Event.create(
-      party_type_id: party.id,
-      rating_id: rating.id
-    )
-  }
 
   it "should have a status automatically set to true" do
     event.should respond_to(:event_status)
@@ -62,6 +66,19 @@ describe Event do
 
     # make sure there are only two words
     event.wordnik.split(" ").length.should == 2
+
+    event.wordnik.should == "watermelon icepick"
+  end
+
+  it "should have access to prompts" do
+    event.should respond_to(:prompts)
+  end
+
+  describe "Random Prompt" do
+    it "should have a method random_prompt" do
+      event.should respond_to(:random_prompt)
+      # event.random_prompt.should == prompt1
+    end
   end
 
 end

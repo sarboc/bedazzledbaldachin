@@ -37,7 +37,6 @@ class Event < ActiveRecord::Base
 
     # sets the wordnik phrase for this party to a string of word1 + word2
     self.wordnik = "#{word1} #{word2}"
-
   end
 
   def get_random_word
@@ -49,11 +48,17 @@ class Event < ActiveRecord::Base
     # excludePartsOfSpeech: "proper-noun-possessive" - excludes possessive proper nouns such as "Steve's"
     # result is a hash, and we want the value of the ["word"] key
     Wordnik.words.get_random_word(maxLength: 7, includePartOfSpeech: "noun", excludePartOfSpeech: "proper-noun", excludePartOfSpeech: "proper-noun-plural", excludePartOfSpeech: "proper-noun-posessive")["word"]
-    self.wordnik = "watermelon icepick"
   end
+
 
   # def add_user_id
   #   self.user_id = current_user.id
   # end
+
+  def random_prompt
+    # find prompts based on party type
+    # where prompt.rating.value <= self.rating.value
+    self.party_type.prompts.joins(:rating).where("ratings.value <= ?", self.rating.value).sample
+  end
 
 end

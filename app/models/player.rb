@@ -11,6 +11,7 @@ class Player < ActiveRecord::Base
   # validates :start_time, presence: true
   # validates :end_time, presence: true
 
+
   after_create :add_start_end_time
 
   def add_start_end_time
