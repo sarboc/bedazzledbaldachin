@@ -1,13 +1,23 @@
 require 'spec_helper'
 
 describe Event do
-  let(:party_type_id){2}
-  let(:rating_id){1}
+  let(:party) {
+    PartyType.create(
+      description: "Super fun party!"
+    )
+  }
+
+  let(:rating) {
+    Rating.create(
+      name: "Super blush",
+      value: 2
+    )
+  }
 
   let(:event) {
     Event.create(
-      party_type_id: party_type_id,
-      rating_id: rating_id
+      party_type_id: party.id,
+      rating_id: rating.id
     )
   }
 
@@ -32,16 +42,26 @@ describe Event do
   end
 
   it "should belong to party_type" do
-    event.should respond_to(:party_type)
+    event.should respond_to(:party_type_id)
+    event.party_type_id.should == party.id
+    event.party_type.should == party
   end
 
   it "should belong to rating" do
-    event.should respond_to(:rating)
+    event.should respond_to(:rating_id)
+    event.rating_id.should == rating.id
+    event.rating.should == rating
   end
 
   it "should auto-assign a wordnik passphrase" do
     event.should respond_to(:wordnik)
     event.wordnik.should_not be_nil
+
+    # make sure there are two words separated by a space
+    event.wordnik.should include(" ")
+
+    # make sure there are only two words
+    event.wordnik.split(" ").length.should == 2
   end
 
 end
