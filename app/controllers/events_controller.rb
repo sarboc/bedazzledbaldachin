@@ -1,5 +1,5 @@
 class EventsController < ApplicationController
-
+  before_filter :authenticate_user!
 # Get twilio-ruby from twilio.com/docs/ruby/install
 
   def index
@@ -19,6 +19,10 @@ class EventsController < ApplicationController
   def show
     @id = params[:id]
     @event = Event.find(@id)
+    party_meister = Player.create(name: current_user.name, phone: current_user.phone, event_id: @id)
+    puts "************"
+    p party_meister
+
     @players = Player.find_by_event_id(@id)
   end
 

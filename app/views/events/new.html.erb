@@ -2,5 +2,6 @@
   <p>Select a rating:</p>
   <%= f.select(:rating_id, options_for_select([['PG', 1],['PG-13', 2],['R', 3]])) %>
   <%= f.hidden_field :party_type_id, value: @party_type_id %>
+  <%= f.hidden_field :user_id, value: current_user.id %>
   <%= f.submit %>
 <% end %>
