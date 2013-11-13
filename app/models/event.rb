@@ -37,7 +37,6 @@ class Event < ActiveRecord::Base
 
     # sets the wordnik phrase for this party to a string of word1 + word2
     self.wordnik = "#{word1} #{word2}"
-
   end
 
   def get_random_word
@@ -52,8 +51,15 @@ class Event < ActiveRecord::Base
     self.wordnik = "watermelon icepick"
   end
 
+
   # def add_user_id
   #   self.user_id = current_user.id
   # end
+
+  def random_prompt
+    # find prompts based on party type
+    # where prompt.rating.value <= self.rating.value
+    self.party_type.prompts.joins(:rating).where("ratings.value <= ?", self.rating.value).sample
+  end
 
 end
