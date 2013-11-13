@@ -48,7 +48,6 @@ class Event < ActiveRecord::Base
     # excludePartsOfSpeech: "proper-noun-possessive" - excludes possessive proper nouns such as "Steve's"
     # result is a hash, and we want the value of the ["word"] key
     Wordnik.words.get_random_word(maxLength: 7, includePartOfSpeech: "noun", excludePartOfSpeech: "proper-noun", excludePartOfSpeech: "proper-noun-plural", excludePartOfSpeech: "proper-noun-posessive")["word"]
-    self.wordnik = "watermelon icepick"
   end
 
 
