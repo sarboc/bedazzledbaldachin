@@ -13,11 +13,9 @@ $ ->
 
     $.post("/players", params).done (data) ->
 
-    $.ajax({
-      url: '/events/'+ $event_id + '.json',
+  getUsers = (event_id) ->
+    $.ajax( '/events/'+ event_id + '.json',
       method: 'GET'
-    }).done (data) ->
+    ).done (data) ->
       data.each (d) ->
         $('#player-list').append('<li>' + d.name + ': ' + d.phone + '</li>' )
-
-
