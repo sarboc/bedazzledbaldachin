@@ -16,12 +16,10 @@ describe Event do
 
   let(:prompt1) {
     Prompt.create( description: "Do something fun!", rating_id: rating.id)
-    party.prompts << prompt1
   }
 
   let(:prompt2) {
     Prompt.create(description: "Do something boring!", rating_id: rating2.id)
-    party2.prompts << prompt2
   }
 
 

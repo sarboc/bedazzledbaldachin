@@ -5,9 +5,19 @@ describe TwilioHelper do
   let(:rating) { Rating.create(name: "Super blush", value: 2) }
   let(:event) { Event.create(party_type_id: party.id, rating_id: rating.id) }
 
+  let(:prompt1) {
+    Prompt.create( description: "Do something fun!", rating_id: rating.id)
+  }
+
+  let(:prompt2) {
+    Prompt.create(description: "Do something boring!", rating_id: rating2.id)
+  }
+
   let(:phone){"+15102346789"}
   let(:name){"Miriam"}
   let(:player) { Player.create(name: name, phone: phone, event_id: event.id) }
+
+  let(:player_prompt) { EventPrompt.create(event_id: event.id, player_id: player.id, prompt_id: prompt1.id)}
 
   let(:invalid_phone){"+14154567891"}
 
@@ -21,6 +31,12 @@ describe TwilioHelper do
 
       it "should return done when the message is done" do
         parse_message(player.phone, "done").should == "done"
+      end
+
+      it "should mark a user's prompt as done", :focus => true do
+        player_prompt.completed.should == false
+        parse_message(player.phone, "done")
+        player_prompt.reload.completed.should == true
       end
 
     end

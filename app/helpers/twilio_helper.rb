@@ -14,7 +14,12 @@ module TwilioHelper
           "Cool! we are going to send u some badasss prompts soon!"
         when "done"
           # mark prompt as done and send new prompt
-          "done"
+          if player.event_prompts.last
+            player.event_prompts.last.update_attributes(completed: true)
+            "done"
+          else
+            "You don't have any prompts yet! Please wait until the party starts"
+          end
         when "pass"
           # mark prompts as passed and send new prompt
           "pass"
