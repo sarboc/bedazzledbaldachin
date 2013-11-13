@@ -7,7 +7,5 @@ class Prompt < ActiveRecord::Base
   belongs_to :rating
 
   validates :description, presence: true
-  validates :category_type, presence: true
-  validates :requirements, presence: true
 
 end
