@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131112055817) do
+ActiveRecord::Schema.define(:version => 20131113220344) do
 
   create_table "event_prompts", :force => true do |t|
     t.integer  "event_id"
@@ -90,6 +90,8 @@ ActiveRecord::Schema.define(:version => 20131112055817) do
     t.string   "name"
     t.datetime "created_at",                             :null => false
     t.datetime "updated_at",                             :null => false
+    t.string   "provider"
+    t.string   "uid"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
