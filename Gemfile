@@ -15,6 +15,8 @@ gem 'twilio-ruby'
 
 gem 'wordnik'
 
+gem 'omniauth-facebook'
+
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
