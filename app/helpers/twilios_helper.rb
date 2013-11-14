@@ -1,7 +1,5 @@
 module TwiliosHelper
 
-  include EventsHelper
-
   def parse_message(phone, message)
     # phone = params[:From]
     # message = params[:Body]
