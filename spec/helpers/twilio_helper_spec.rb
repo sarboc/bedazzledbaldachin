@@ -30,10 +30,10 @@ describe TwilioHelper do
     describe "done" do
 
       it "should return done when the message is done" do
-        parse_message(player.phone, "done").should == "done"
+        parse_message(player.phone, "done").should == "You don't have any prompts yet! Please wait until the party starts"
       end
 
-      it "should mark a user's prompt as done", :focus => true do
+      it "should mark a user's prompt as done" do
         player_prompt.completed.should == false
         parse_message(player.phone, "done")
         player_prompt.reload.completed.should == true
