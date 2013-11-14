@@ -106,7 +106,13 @@ describe TwilioHelper do
     describe "leave" do
 
       it "should return leave when the message is leave" do
-        parse_message(player.phone, "leave").should == "leave"
+        parse_message(player.phone, "leave").should == leave_text
+      end
+
+      it "should assign the current time to end_time" do
+        player.end_time.should be_nil
+        parse_message(player.phone, "leave")
+        player.reload.end_time.should_not be_nil
       end
 
     end
@@ -114,7 +120,7 @@ describe TwilioHelper do
     describe "unknown message" do
 
       it "should return helpful error message when it doesn't know a message" do
-        parse_message(player.phone, "next").should == "I don't know how to do that. Please respond with 'yes' to accept an invitation"
+        parse_message(player.phone, "next").should == unknown_text
       end
     end
   end

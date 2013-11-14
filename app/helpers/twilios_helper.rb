@@ -74,7 +74,7 @@ module TwiliosHelper
   def random_message(player)
     # if user has not accepted, send message with ways to join
     # if user has accepted, send message with ways to leave
-    "I don't know how to do that. Please respond with 'yes' to accept an invitation!"
+    "I don't know how to do that. Please respond with 'yes' to accept an invitation"
   end
 
 end
