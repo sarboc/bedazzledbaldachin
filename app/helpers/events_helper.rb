@@ -12,4 +12,5 @@ module EventsHelper
       :body => text})
     puts @message
   end
+
 end

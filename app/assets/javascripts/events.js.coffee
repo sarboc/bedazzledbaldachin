@@ -2,28 +2,40 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
 $ ->
+  $event_id = $('#event_id').val()
+
+  ajaxRequest = (type) ->
+    $.ajax( "/events/#{$event_id}.json",
+      type: type
+    )
+
+  updatePlayerList = (data) ->
+    $('#player-list').empty()
+    for item in data
+      status = "Accepted" if item.accepted == true
+      status = "Pending" if item.accepted == false
+      $('#player-list').append('<li>' + item.name + ': ' + item.phone + ': ' + status + '</li>' )
+
+  checkPlayers = () ->
+    ajaxRequest("GET").done (data) ->
+      updatePlayerList(data)
+
   $('#add-player').click ->
     event.preventDefault()
     $phone = $("#phone").val()
     $name = $("#name").val()
-    $event_id = $("#event_id").val()
     params = { player: { phone: $phone, name: $name, event_id: $event_id}}
     $("#name").val("")
     $("#phone").val("")
 
-    $.post("/players", params).done (data) ->
-      # getUsers($event_id)
+    $.post("/players", params).done ->
+      updatePlayerList ajaxRequest("GET")
 
   $('#start-party').click ->
-    $event_id = $('#start-party').val()
-    $.ajax( '/events/' + $event_id,
-      type: 'PUT'
-    ).done (data) ->
-      alert "You've started the party!"
-  # getUsers = (event_id) ->
-  #   console.log event_id
-  #   $.ajax( '/events/'+ event_id + '.json',
-  #   method: 'GET'
-  #   ).done (data) ->
-  #     for item in data
-  #       $('#player-list').append('<li>' + item.name + ': ' + item.phone + '</li>' )
+    ajaxRequest("PUT")
+    alert "You've started the party!"
+
+  checkPlayers()
+  setInterval () ->
+   checkPlayers()
+  , 10000
