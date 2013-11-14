@@ -12,7 +12,9 @@ $ ->
   updatePlayerList = (data) ->
     $('#player-list').empty()
     for item in data
-      $('#player-list').append('<li>' + item.name + ': ' + item.phone + '</li>' )
+      status = "Accepted" if item.accepted == true
+      status = "Pending" if item.accepted == false
+      $('#player-list').append('<li>' + item.name + ': ' + item.phone + ': ' + status + '</li>' )
 
   checkPlayers = () ->
     ajaxRequest("GET").done (data) ->
@@ -36,4 +38,4 @@ $ ->
   checkPlayers()
   setInterval () ->
    checkPlayers()
-  , 5000
+  , 10000
