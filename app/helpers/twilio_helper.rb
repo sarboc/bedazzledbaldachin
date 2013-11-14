@@ -14,9 +14,9 @@ module TwilioHelper
           # "Cool! we are going to send u some badasss prompts soon!"
           accept(player)
         when "done"
-          mark_completed(player)
+          new_prompt(player, "completed")
         when "pass"
-          mark_passed(player)
+          new_prompt(player, "passed")
         when "leave"
           leave(player)
         else
@@ -29,19 +29,25 @@ module TwilioHelper
 
   end
 
-  def mark_completed(player)
-    # mark prompt as done and send new prompt
+  def new_prompt(player, status)
+    # if prompt, mark prompt as either passed or completed and send new prompt
     if player.event_prompts.last
-      player.event_prompts.last.update_attributes(completed: true)
-      "done"
+      if status == "completed"
+        # set the current prompt to completed
+        player.event_prompts.last.update_attributes(completed: true)
+
+      elsif status == "passed"
+        #set the current prompt to passed
+        player.event_prompts.last.update_attributes(passed: true)
+      end
+
+      # send back a new prompt for the player
+      player.get_new_prompt
+
+    # if no prompt, then the game hasn't started yet
     else
       "You don't have any prompts yet! Please wait until the party starts"
     end
-  end
-
-  def mark_passed(player)
-    # mark prompts as passed and send new prompt
-    "pass"
   end
 
   def leave(player)
