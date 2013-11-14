@@ -27,9 +27,23 @@ describe TwilioHelper do
       parse_message(invalid_phone, "anything") == "We don't know who you are. Sorry. Visit www.lederfeier.com to learn more."
     end
 
+    describe "yes-ish things" do
+      it "should set a player to accepted" do
+        player.accepted.should == false
+        parse_message(player.phone, "yes")
+        player.reload.accepted.should == true
+      end
+
+      it "should respond with a welcome message" do
+        parse_message(player.phone, "yes").should == "welcome message"
+      end
+    end
+
+    end
+
     describe "done" do
 
-      it "should return done when the message is done" do
+      it "should return a message if the part hasn't started" do
         parse_message(player.phone, "done").should == "You don't have any prompts yet! Please wait until the party starts"
       end
 
@@ -60,12 +74,8 @@ describe TwilioHelper do
     describe "unknown message" do
 
       it "should return helpful error message when it doesn't know a message" do
-        parse_message(player.phone, "next").should == "I don't know that"
+        parse_message(player.phone, "next").should == "I don't know how to do that. Please respond with 'yes' to accept an invitation"
       end
 
     end
-
-
-
-  end
 end

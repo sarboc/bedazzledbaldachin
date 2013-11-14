@@ -9,9 +9,10 @@ module TwilioHelper
 
     if player
       # person belongs to a game, so send them a message
-      case message
-        when "y"
-          "Cool! we are going to send u some badasss prompts soon!"
+      case message.downcase
+        when "y" || "yes" || "accept" || "ok"
+          # "Cool! we are going to send u some badasss prompts soon!"
+          accept(player)
         when "done"
           mark_completed(player)
         when "pass"
@@ -48,10 +49,14 @@ module TwilioHelper
     "leave"
   end
 
+  def accept(player)
+    # change player accepted to true
+  end
+
   def random_message(player)
-    # see if player has a name. If not, set it
-    # if user has a name, send back a helpfeul error message
-    "I don't know that"
+    # if user has not accepted, send message with ways to join
+    # if user has accepted, send message with ways to leave
+    "I don't know how to do that. Please respond with 'yes' to accept an invitation"
   end
 
 end
