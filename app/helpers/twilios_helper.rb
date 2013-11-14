@@ -1,5 +1,7 @@
 module TwiliosHelper
 
+  include EventsHelper
+
   def parse_message(phone, message)
     # phone = params[:From]
     # message = params[:Body]
@@ -46,7 +48,13 @@ module TwiliosHelper
 
   def leave(player)
     # mark end time for user
-    "leave"
+
+    leave_text = "Awww sorry to see you go!  Thanks for playing Leide Feier - see you next time!"
+
+    # assign NOW to player's end time (the actual DB)
+    player.update_attributes(end_time: Time.now)
+    # send some goodbye text (in a 'constant', above for easy access)
+    leave_text
   end
 
   def accept(player)
@@ -66,7 +74,7 @@ module TwiliosHelper
   def random_message(player)
     # if user has not accepted, send message with ways to join
     # if user has accepted, send message with ways to leave
-    "I don't know how to do that. Please respond with 'yes' to accept an invitation"
+    "I don't know how to do that. Please respond with 'yes' to accept an invitation!"
   end
 
 end

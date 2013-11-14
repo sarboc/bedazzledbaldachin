@@ -35,14 +35,17 @@ class EventsController < ApplicationController
 
   def update
     @id = params[:id]
+
     @event = Event.find(@id)
     @event.add_start_end_time
-    @players = @event.players
-    @players.each do |player|
-      phone = player.phone
-      text = "Let the games begin! Your first prompt will arrive shortly."
-      send_text(phone, text)
+
+    # MK get object with all registered players
+    party_players = @event.players
+    # MK iterate through players, sending the first prompt to each - the Party Starter!
+    party_players.each do |this_player|
+      send_text(this_player.phone, this_player.get_new_prompt)
     end
+
     render :json => @event
   end
 end
