@@ -1,6 +1,8 @@
 class TwilioController < ApplicationController
 
-  include TwilioHelper
+require 'rubygems'          # This line not needed for ruby > 1.8
+require 'twilio-ruby'
+require 'twilio_helper'
 
   def index
     # @phone = params[:From]

@@ -15,7 +15,7 @@ gem 'twilio-ruby'
 
 gem 'wordnik'
 
-gem 'omniauth-facebook'
+gem 'omniauth-facebook', '1.4.0'
 gem 'omniauth'
 
 # Gems used only for assets and not required
