@@ -16,11 +16,11 @@ ActiveRecord::Schema.define(:version => 20131113220344) do
   create_table "event_prompts", :force => true do |t|
     t.integer  "event_id"
     t.integer  "prompt_id"
-    t.integer  "user_event_id"
-    t.boolean  "completed",     :default => false
-    t.boolean  "passed",        :default => false
-    t.datetime "created_at",                       :null => false
-    t.datetime "updated_at",                       :null => false
+    t.integer  "player_id"
+    t.boolean  "completed",  :default => false
+    t.boolean  "passed",     :default => false
+    t.datetime "created_at",                    :null => false
+    t.datetime "updated_at",                    :null => false
   end
 
   create_table "events", :force => true do |t|

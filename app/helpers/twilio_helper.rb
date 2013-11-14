@@ -13,18 +13,13 @@ module TwilioHelper
         when "y"
           "Cool! we are going to send u some badasss prompts soon!"
         when "done"
-          # mark prompt as done and send new prompt
-          "done"
+          mark_completed(player)
         when "pass"
-          # mark prompts as passed and send new prompt
-          "pass"
+          mark_passed(player)
         when "leave"
-          # mark end time for user
-          "leave"
+          leave(player)
         else
-          # see if player has a name. If not, set it
-          # if user has a name, send back a helpfeul error message
-          "I don't know that"
+          random_message(player)
       end
     else
       # player doesn't belong to a game
@@ -32,4 +27,31 @@ module TwilioHelper
     end
 
   end
+
+  def mark_completed(player)
+    # mark prompt as done and send new prompt
+    if player.event_prompts.last
+      player.event_prompts.last.update_attributes(completed: true)
+      "done"
+    else
+      "You don't have any prompts yet! Please wait until the party starts"
+    end
+  end
+
+  def mark_passed(player)
+    # mark prompts as passed and send new prompt
+    "pass"
+  end
+
+  def leave(player)
+    # mark end time for user
+    "leave"
+  end
+
+  def random_message(player)
+    # see if player has a name. If not, set it
+    # if user has a name, send back a helpfeul error message
+    "I don't know that"
+  end
+
 end

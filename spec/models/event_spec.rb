@@ -16,12 +16,10 @@ describe Event do
 
   let(:prompt1) {
     Prompt.create( description: "Do something fun!", rating_id: rating.id)
-    party.prompts << prompt1
   }
 
   let(:prompt2) {
     Prompt.create(description: "Do something boring!", rating_id: rating2.id)
-    party2.prompts << prompt2
   }
 
 
@@ -42,7 +40,6 @@ describe Event do
 
   it "should have an end time 3 hours after end time" do
     event.end_time.should == event.start_time + 60 * 60 * 3
-    (event.end_time.hour - event.start_time.hour).should == 3
   end
 
   it "should belong to party_type" do
