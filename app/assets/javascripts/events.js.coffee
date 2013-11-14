@@ -12,12 +12,18 @@ $ ->
     $("#phone").val("")
 
     $.post("/players", params).done (data) ->
+      # getUsers($event_id)
 
-    $.ajax({
-      url: '/events/'+ $event_id + '.json',
-      method: 'GET'
-    }).done (data) ->
-      data.each (d) ->
-        $('#player-list').append('<li>' + d.name + ': ' + d.phone + '</li>' )
-
-
+  $('#start-party').click ->
+    $event_id = $('#start-party').val()
+    $.ajax( '/events/' + $event_id,
+      type: 'PUT'
+    ).done (data) ->
+      alert "You've started the party!"
+  # getUsers = (event_id) ->
+  #   console.log event_id
+  #   $.ajax( '/events/'+ event_id + '.json',
+  #   method: 'GET'
+  #   ).done (data) ->
+  #     for item in data
+  #       $('#player-list').append('<li>' + item.name + ': ' + item.phone + '</li>' )
