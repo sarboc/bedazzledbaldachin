@@ -10,13 +10,12 @@ module TwiliosHelper
     if player
       # person belongs to a game, so send them a message
       case message.downcase
-        when "y" || "yes" || "accept" || "ok"
-          # "Cool! we are going to send u some badasss prompts soon!"
+        when "y", "yes", "accept", "ok"
           accept(player)
-        when "done"
-          new_prompt(player, "completed")
-        when "pass"
-          new_prompt(player, "passed")
+        when /done/
+          new_prompt(player, :completed)
+        when /pass/
+          new_prompt(player, :passed)
         when "leave"
           leave(player)
         else
@@ -29,17 +28,11 @@ module TwiliosHelper
 
   end
 
-  def new_prompt(player, status)
+    def new_prompt(player, column)
     # if prompt, mark prompt as either passed or completed and send new prompt
     if player.event_prompts.last
-      if status == "completed"
-        # set the current prompt to completed
-        player.event_prompts.last.update_attributes(completed: true)
-
-      elsif status == "passed"
-        #set the current prompt to passed
-        player.event_prompts.last.update_attributes(passed: true)
-      end
+      # use symbol passed to function as the column name for the update
+      player.event_prompts.last.update_attributes(column => true)
 
       # send back a new prompt for the player
       player.get_new_prompt
@@ -50,6 +43,7 @@ module TwiliosHelper
     end
   end
 
+
   def leave(player)
     # mark end time for user
     "leave"
@@ -58,6 +52,15 @@ module TwiliosHelper
   def accept(player)
     # change player accepted to true
     "promts will start soon yay"
+    #   unless player.accepted
+    #   player.update_attributes(accepted: true)
+    #   start_time = Time.now
+    #   end_time = start_time + 60 * 60 * 3
+    #   player.update_attributes(start_time: start_time, end_time: end_time)
+    #   "Welcome #{player.name}! Please stay tuned for your first prompt."
+    # else
+    #   "You've already joined the game."
+    # end
   end
 
   def random_message(player)
