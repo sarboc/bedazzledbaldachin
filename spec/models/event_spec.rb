@@ -36,6 +36,7 @@ describe Event do
 
   it "should belong to rating" do
     event.should respond_to(:rating_id)
+    event.should respond_to(:rating)
     event.rating_id.should == rating.id
     event.rating.should == rating
   end

@@ -27,38 +27,43 @@ describe TwilioHelper do
       parse_message(invalid_phone, "anything") == "We don't know who you are. Sorry. Visit www.lederfeier.com to learn more."
     end
 
-    describe "yes-ish things" do
-      it "should set a player to accepted" do
-        player.accepted.should == false
-        parse_message(player.phone, "yes")
-        player.reload.accepted.should == true
-      end
+    describe "done and pass" do
 
-      it "should respond with a welcome message" do
-        parse_message(player.phone, "yes").should == "welcome message"
-      end
-    end
-
-    end
-
-    describe "done" do
-
-      it "should return a message if the part hasn't started" do
+      it "should return a message if the party hasn't started" do
         parse_message(player.phone, "done").should == "You don't have any prompts yet! Please wait until the party starts"
+        parse_message(player.phone, "pass").should == "You don't have any prompts yet! Please wait until the party starts"
       end
 
-      it "should mark a user's prompt as done" do
+      it "should mark a player's prompt as completed if message is done" do
+        party.prompts << prompt1
         player_prompt.completed.should == false
         parse_message(player.phone, "done")
         player_prompt.reload.completed.should == true
+        player_prompt.passed.should == false
       end
 
-    end
+      it "should mark a player's prompt as passed if message is pass" do
+        party.prompts << prompt1
+        player_prompt.passed.should == false
+        parse_message(player.phone, "pass")
+        player_prompt.reload.passed.should == true
+        player_prompt.completed.should == false
+      end
 
-    describe "pass" do
+      it "should return a new prompt if message is done" do
+        party.prompts << prompt1
+        player_prompt
+        player.event_prompts.length.should == 1
+        parse_message(player.phone, "done").should == prompt1.description
+        player.reload.event_prompts.length.should == 2
+      end
 
-      it "should return pass when the message is pass" do
-        parse_message(player.phone, "pass").should == "pass"
+      it "should return a new prompt if message is pass" do
+        party.prompts << prompt1
+        player_prompt
+        player.event_prompts.length.should == 1
+        parse_message(player.phone, "pass").should == prompt1.description
+        player.reload.event_prompts.length.should == 2
       end
 
     end
@@ -78,4 +83,5 @@ describe TwilioHelper do
       end
 
     end
+  end
 end
