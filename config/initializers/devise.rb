@@ -5,7 +5,7 @@ Devise.setup do |config|
   require "omniauth-facebook"
   OpenSSL::SSL::VERIFY_PEER = OpenSSL::SSL::VERIFY_NONE if Rails.env.development?
   config.omniauth :facebook, ENV['key'], ENV['secret'], :strategy_class => OmniAuth::Strategies::Facebook
-  {:scope => 'email, offline_access', :client_options => {:ssl => {:ca_file => '/usr/lib/ssl/certs/ca-certificates.crt'}}}
+  {:scope => 'email, offline_access', :client_options => {:ssl => {:ca_path => '/etc/ssl/certs'}}}
   # The secret key used by Devise. Devise uses this key to generate
   # random tokens. Changing this key will render invalid all existing
   # confirmation, reset password and unlock tokens in the database.
