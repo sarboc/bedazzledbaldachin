@@ -1,4 +1,4 @@
-module TwilioHelper
+module TwiliosHelper
 
   def parse_message(phone, message)
     # phone = params[:From]
@@ -28,7 +28,7 @@ module TwilioHelper
 
   end
 
-  def new_prompt(player, column)
+    def new_prompt(player, column)
     # if prompt, mark prompt as either passed or completed and send new prompt
     if player.event_prompts.last
       # use symbol passed to function as the column name for the update
@@ -43,23 +43,24 @@ module TwilioHelper
     end
   end
 
+
   def leave(player)
     # mark end time for user
     "leave"
   end
 
-  #Used if statement to eliminate overwrite if user texts y again
-  #It'd be good to dicsuss the best way to handle this
   def accept(player)
-    unless player.accepted
-      player.update_attributes(accepted: true)
-      start_time = Time.now
-      end_time = start_time + 60 * 60 * 3
-      player.update_attributes(start_time: start_time, end_time: end_time)
-      "Welcome #{player.name}! Please stay tuned for your first prompt."
-    else
-      "You've already joined the game."
-    end
+    # change player accepted to true
+    "promts will start soon yay"
+    #   unless player.accepted
+    #   player.update_attributes(accepted: true)
+    #   start_time = Time.now
+    #   end_time = start_time + 60 * 60 * 3
+    #   player.update_attributes(start_time: start_time, end_time: end_time)
+    #   "Welcome #{player.name}! Please stay tuned for your first prompt."
+    # else
+    #   "You've already joined the game."
+    # end
   end
 
   def random_message(player)

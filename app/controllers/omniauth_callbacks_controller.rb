@@ -1,8 +1,11 @@
-class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
+class OmniauthCallbacksController < Devise::OmniauthCallbacksController
+
+skip_before_filter :authenticate_user!
+
 def facebook
     # You need to implement the method below in your model (e.g. app/models/user.rb)
     # info from Fb OmniAuth is available from the hash at request.enb[omniatuth]
-    @user = User.find_for_facebook_oauth(request.env["omniauth.auth"], current_user)
+    @user = User.find_for_facebook_oauth(request.env["omniauth.auth"])
 
     if @user.persisted?
       sign_in_and_redirect @user, :event => :authentication #this will throw if @user is not activated

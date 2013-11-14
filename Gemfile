@@ -7,7 +7,7 @@ gem 'rails', '3.2.14'
 
 gem 'pg'
 
-gem 'devise', :git => "http://github.com/plataformatec/devise.git"
+gem 'devise'
 
 gem 'figaro'
 
