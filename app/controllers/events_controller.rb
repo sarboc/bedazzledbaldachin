@@ -1,5 +1,6 @@
 class EventsController < ApplicationController
   before_filter :authenticate_user!
+  include EventsHelper
   require 'rubygems'          # This line not needed for ruby > 1.8
   require 'twilio-ruby'
 # Get twilio-ruby from twilio.com/docs/ruby/install
@@ -36,6 +37,12 @@ class EventsController < ApplicationController
     @id = params[:id]
     @event = Event.find(@id)
     @event.add_start_end_time
+    @players = @event.players
+    @players.each do |player|
+      phone = player.phone
+      text = "Let the games begin! Your first prompt will arrive shortly."
+      send_text(phone, text)
+    end
     render :json => @event
   end
 end

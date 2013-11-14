@@ -10,8 +10,7 @@ module TwilioHelper
     if player
       # person belongs to a game, so send them a message
       case message.downcase
-        when "y" || "yes" || "accept" || "ok"
-          # "Cool! we are going to send u some badasss prompts soon!"
+        when "y", "yes", "accept", "ok"
           accept(player)
         when /done/
           new_prompt(player, :completed)
@@ -49,8 +48,18 @@ module TwilioHelper
     "leave"
   end
 
+  #Used if statement to eliminate overwrite if user texts y again
+  #It'd be good to dicsuss the best way to handle this
   def accept(player)
-    # change player accepted to true
+    unless player.accepted
+      player.update_attributes(accepted: true)
+      start_time = Time.now
+      end_time = start_time + 60 * 60 * 3
+      player.update_attributes(start_time: start_time, end_time: end_time)
+      "Welcome #{player.name}! Please stay tuned for your first prompt."
+    else
+      "You've already joined the game."
+    end
   end
 
   def random_message(player)
