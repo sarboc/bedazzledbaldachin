@@ -90,27 +90,40 @@ describe TwilioHelper do
     end
 
     describe "yes-ish things" do
-
       it "should set a player to accepted" do
         player.accepted.should == false
         parse_message(player.phone, "y")
         player.reload.accepted.should == true
       end
 
-      it "should set player start time to current time on accept" do
+      it "should set player start time to not nil" do
         player.start_time.should be_nil
         parse_message(player.phone, "ok")
         player.reload.start_time.should_not be_nil
       end
 
-      it "should respond with a welcome message" do
+      it "should set player end time to not nil" do
         player.end_time.should be_nil
         parse_message(player.phone, "yes")
         player.reload.end_time.should_not be_nil
       end
 
+      it "should not overide player start-time if user repeats yes-ish command" do
+        player.start_time.should be_nil
+        parse_message(player.phone, "yes")
+        start_time = player.reload.start_time
+        start_time.should_not be_nil
+        parse_message(player.phone, "yes")
+        player.reload.start_time.should == start_time
+      end
+
+      it "should recieve already joined if user repeats yes-ish command" do
+        parse_message(player.phone, "yes").should == "Welcome #{player.name}! Please stay tuned for your first prompt."
+        parse_message(player.phone, "yes").should == "You've already joined the game."
+      end
+
       it "should respond with a welcome message" do
-        parse_message(player.phone, "accept").should == "welcome message"
+        parse_message(player.phone, "accept").should == "Welcome #{player.name}! Please stay tuned for your first prompt."
       end
     end
 
@@ -127,7 +140,6 @@ describe TwilioHelper do
       it "should return helpful error message when it doesn't know a message" do
         parse_message(player.phone, "next").should == "I don't know how to do that. Please respond with 'yes' to accept an invitation"
       end
-
     end
   end
 end
