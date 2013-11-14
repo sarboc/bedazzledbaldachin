@@ -57,7 +57,6 @@ module TwiliosHelper
 
   def accept(player)
     # change player accepted to true
-    # "promts will start soon yay"
     unless player.accepted
       player.update_attributes(accepted: true)
       start_time = Time.now

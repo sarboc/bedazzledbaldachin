@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe TwilioHelper do
+describe TwiliosHelper do
   self.instance_exec &$test_vars
 
   describe "parse_message" do
