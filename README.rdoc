@@ -9,6 +9,12 @@ Facebook Integration according to https://github.com/plataformatec/devise/wiki/O
 - added gemfile for oauth
 - added stuff in docs
 - added line to sessions new-view
+-
+-
+-
+-FACEBOOK DEVICE OAUTH ERROR SOLVING:
+1) had to kill that a user has to have a phone number when it is saved (took it out in the migration file for the users)
+2) we had env variables double in there (in omniauth.rb AND in devise rb, so i commented it out in omniauth.rb)
 
 
 rspec mocks stub to test methods that call an api (but we are not calling the twiwlio api because it makes a request to us)
@@ -22,3 +28,7 @@ after a rebase
 
 
 git diff --color in terminal
+
+Other things I did Wedneday:
+- changed name to TwilioS controller cause gave me errors for cannot find TwiliosController when i did the ngrok url
+- put parse-message method in application controller bc controller cannot access helpers. http://stackoverflow.com/questions/2388932/undefined-method-when-calling-helper-method-from-controller-in-rails

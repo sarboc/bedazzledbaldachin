@@ -7,7 +7,7 @@ gem 'rails', '3.2.14'
 
 gem 'pg'
 
-gem 'devise', :git => "http://github.com/plataformatec/devise.git"
+gem 'devise'
 
 gem 'figaro'
 
@@ -15,7 +15,7 @@ gem 'twilio-ruby'
 
 gem 'wordnik'
 
-gem 'omniauth-facebook', '1.4.0'
+gem 'omniauth-facebook'
 gem 'omniauth'
 
 # Gems used only for assets and not required

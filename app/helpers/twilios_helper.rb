@@ -1,9 +1,8 @@
-class ApplicationController < ActionController::Base
-  protect_from_forgery
+module TwiliosHelper
 
   def parse_message(phone, message)
-    phone = params[:From]
-    message = params[:Body]
+    # phone = params[:From]
+    # message = params[:Body]
 
     # see if a player exists
     player = Player.find_by_phone(phone)
@@ -66,4 +65,5 @@ class ApplicationController < ActionController::Base
     # if user has accepted, send message with ways to leave
     "I don't know how to do that. Please respond with 'yes' to accept an invitation"
   end
+
 end

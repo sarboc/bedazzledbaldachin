@@ -19,7 +19,7 @@ class DeviseCreateUsers < ActiveRecord::Migration
       t.string   :current_sign_in_ip
       t.string   :last_sign_in_ip
       #we added this:
-      t.string :phone, :null => false
+      t.string :phone#, :null => false
       t.string :name
       ## Confirmable
       # t.string   :confirmation_token
