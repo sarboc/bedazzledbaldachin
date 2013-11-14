@@ -12,7 +12,7 @@ module TwiliosHelper
       case message.downcase
         when "y", "yes", "accept", "ok"
           accept(player)
-        when /done/
+        when /done/ #two slashes are a regex to match any text that has a "pass" in it
           new_prompt(player, :completed)
         when /pass/
           new_prompt(player, :passed)
@@ -57,16 +57,16 @@ module TwiliosHelper
 
   def accept(player)
     # change player accepted to true
-    "promts will start soon yay"
-    #   unless player.accepted
-    #   player.update_attributes(accepted: true)
-    #   start_time = Time.now
-    #   end_time = start_time + 60 * 60 * 3
-    #   player.update_attributes(start_time: start_time, end_time: end_time)
-    #   "Welcome #{player.name}! Please stay tuned for your first prompt."
-    # else
-    #   "You've already joined the game."
-    # end
+    # "promts will start soon yay"
+    unless player.accepted
+      player.update_attributes(accepted: true)
+      start_time = Time.now
+      end_time = start_time + 60 * 60 * 3
+      player.update_attributes(start_time: start_time, end_time: end_time)
+      "Welcome #{player.name}! Please stay tuned for your first prompt."
+    else
+      "You've already joined the game."
+    end
   end
 
   def random_message(player)
