@@ -6,6 +6,7 @@ require 'twilio-ruby'
 
   def index
     @phone = params[:From]
+    @player = Player.find_by_phone(@phone)
     # @city = params[:FromCity]
     # @state = params[:FromState]
     @reply = parse_message(params[:From], params[:Body])
