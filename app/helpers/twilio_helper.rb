@@ -13,10 +13,10 @@ module TwilioHelper
         when "y" || "yes" || "accept" || "ok"
           # "Cool! we are going to send u some badasss prompts soon!"
           accept(player)
-        when "done"
-          new_prompt(player, "completed")
-        when "pass"
-          new_prompt(player, "passed")
+        when /done/
+          new_prompt(player, :completed)
+        when /pass/
+          new_prompt(player, :passed)
         when "leave"
           leave(player)
         else
@@ -29,17 +29,11 @@ module TwilioHelper
 
   end
 
-  def new_prompt(player, status)
+  def new_prompt(player, column)
     # if prompt, mark prompt as either passed or completed and send new prompt
     if player.event_prompts.last
-      if status == "completed"
-        # set the current prompt to completed
-        player.event_prompts.last.update_attributes(completed: true)
-
-      elsif status == "passed"
-        #set the current prompt to passed
-        player.event_prompts.last.update_attributes(passed: true)
-      end
+      # use symbol passed to function as the column name for the update
+      player.event_prompts.last.update_attributes(column => true)
 
       # send back a new prompt for the player
       player.get_new_prompt

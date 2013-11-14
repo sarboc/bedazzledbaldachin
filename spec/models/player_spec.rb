@@ -1,6 +1,10 @@
 require 'spec_helper'
 
 describe Player do
+  before :each do
+    Event.any_instance.stub(:get_random_word).and_return("watermelon", "icepick")
+  end
+
   let(:party) { PartyType.create(description: "Super fun party!") }
   let(:rating) { Rating.create(name: "Super blush", value: 2) }
   let(:event) { Event.create(party_type_id: party.id, rating_id: rating.id) }
