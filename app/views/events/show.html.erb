@@ -6,17 +6,13 @@
 <p>Invite Players:</p>
 <div id="player-form">
   <form role="form">
-    Name: <input type="text" id="name" name="name">
-    Phone Number: <input type="text" id="phone" name="phone">
+    Name: <input type="text" id="name" class="form-control" name="name">
+    Phone Number: <input type="text" class="form-control bfh-phone" data-format="+1 (ddd) ddd-dddd" id="phone" name="phone">
     <input type="hidden" id="event_id" value="<%= @id %>" >
     <button id="add-player">Add User</button>
   </form>
 </div>
+
 <div id="player-list">
-  <% @players.each do |p| %>
-    <%= p.name %> :
-    <%= p.phone %> :
-    <%= p.accepted ? "Accepted" : "Pending" %> <br>
-  <% end %>
 </div>
-<button id="start-party" class="btn btn-primary" value="<%= @id %>">Start the Party</button>
+<button id="start-party" class="btn btn-primary" value="<%= @id %>">Get this party started!</button>

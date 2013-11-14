@@ -23,12 +23,13 @@ class EventsController < ApplicationController
   def show
     @id = params[:id]
     @event = Event.find(@id)
+    @player = Player.new
     @players = @event.players
 
     respond_to do |format|
       format.html
       format.json {
-        render :json => @players
+        render json: @players
       }
     end
   end
@@ -46,6 +47,6 @@ class EventsController < ApplicationController
       send_text(this_player.phone, this_player.get_new_prompt)
     end
 
-    render :json => @event
+    render json: @event
   end
 end
