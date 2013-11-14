@@ -51,6 +51,10 @@ $test_vars = lambda {
   let(:rating) { Rating.create(name: "Super blush", value: 2) }
   let(:event) { Event.create(party_type_id: party.id, rating_id: rating.id) }
 
+  # MK adding the following line
+  let(:leave_text) {"Awww sorry to see you go!  Thanks for playing Leide Feier - see you next time!"}
+  let(:unknown_text) {"I don't know how to do that. Please respond with 'yes' to accept an invitation"}
+
   let(:prompt1) {
     Prompt.create( description: "Do something fun!", rating_id: rating.id)
   }

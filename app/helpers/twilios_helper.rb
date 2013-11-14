@@ -46,7 +46,13 @@ module TwiliosHelper
 
   def leave(player)
     # mark end time for user
-    "leave"
+
+    leave_text = "Awww sorry to see you go!  Thanks for playing Leide Feier - see you next time!"
+
+    # assign NOW to player's end time (the actual DB)
+    player.update_attributes(end_time: Time.now)
+    # send some goodbye text (in a 'constant', above for easy access)
+    leave_text
   end
 
   def accept(player)

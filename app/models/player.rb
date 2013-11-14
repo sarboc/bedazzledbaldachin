@@ -28,4 +28,7 @@ class Player < ActiveRecord::Base
     # respond to the user with the message from the event_prompt we added
     self.event_prompts.last.prompt.description
   end
+
 end
+
+
