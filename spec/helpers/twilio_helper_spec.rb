@@ -80,6 +80,38 @@ describe TwilioHelper do
         parse_message(player.phone, "jlkjlkjpasskjlkj").should == no_prompts_message
       end
 
+      it "should return a new prompt if message is pass" do
+        party.prompts << prompt1
+        player_prompt
+        player.event_prompts.length.should == 1
+        parse_message(player.phone, "pass").should == prompt1.description
+        player.reload.event_prompts.length.should == 2
+      end
+    end
+
+    describe "yes-ish things" do
+
+      it "should set a player to accepted" do
+        player.accepted.should == false
+        parse_message(player.phone, "y")
+        player.reload.accepted.should == true
+      end
+
+      it "should set player start time to current time on accept" do
+        player.start_time.should be_nil
+        parse_message(player.phone, "ok")
+        player.reload.start_time.should_not be_nil
+      end
+
+      it "should respond with a welcome message" do
+        player.end_time.should be_nil
+        parse_message(player.phone, "yes")
+        player.reload.end_time.should_not be_nil
+      end
+
+      it "should respond with a welcome message" do
+        parse_message(player.phone, "accept").should == "welcome message"
+      end
     end
 
     describe "leave" do

@@ -4,8 +4,8 @@ class PlayersController < ApplicationController
   require 'twilio-ruby'
 
   def create
-    player_info = params[:player]
-    @player = Player.create(player_info)
+    params[:player][:phone] = "+1" + params[:player][:phone]
+    @player = Player.create(params[:player])
     phone = @player.phone
     text = "Hi #{@player.name}. #{current_user.name} invited you to play. Please reply with 'y' to accept."
     send_text(phone, text)
