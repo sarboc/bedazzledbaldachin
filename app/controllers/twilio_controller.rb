@@ -1,6 +1,6 @@
 class TwilioController < ApplicationController
 
-  # require twilio_helper
+  include TwilioHelper
 
   def index
     # @phone = params[:From]

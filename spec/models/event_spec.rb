@@ -28,20 +28,6 @@ describe Event do
     event.event_status.should == true
   end
 
-  it "should automatically add a start time" do
-    event.should respond_to(:start_time)
-    event.start_time.should_not be_nil
-  end
-
-  it "should automatically add an end time" do
-    event.should respond_to(:end_time)
-    event.end_time.should_not be_nil
-  end
-
-  it "should have an end time 3 hours after end time" do
-    event.end_time.should == event.start_time + 60 * 60 * 3
-  end
-
   it "should belong to party_type" do
     event.should respond_to(:party_type_id)
     event.party_type_id.should == party.id
