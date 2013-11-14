@@ -39,4 +39,33 @@ RSpec.configure do |config|
   # the seed, which is printed after each run.
   #     --seed 1234
   config.order = "random"
+
 end
+
+$test_vars = lambda {
+  before :each do
+    Event.any_instance.stub(:get_random_word).and_return("watermelon", "icepick")
+  end
+
+  let(:party) { PartyType.create(description: "Super fun party!") }
+  let(:rating) { Rating.create(name: "Super blush", value: 2) }
+  let(:event) { Event.create(party_type_id: party.id, rating_id: rating.id) }
+
+  let(:prompt1) {
+    Prompt.create( description: "Do something fun!", rating_id: rating.id)
+  }
+
+  let(:prompt2) {
+    Prompt.create(description: "Do something boring!", rating_id: rating2.id)
+  }
+
+  let(:phone){"+15102346789"}
+  let(:name){"Miriam"}
+  let(:player) { Player.create(name: name, phone: phone, event_id: event.id) }
+
+  let(:player_prompt) { EventPrompt.create(event_id: event.id, player_id: player.id, prompt_id: prompt1.id)}
+
+  let(:invalid_phone){"+14154567891"}
+
+  let(:no_prompts_message){"You don't have any prompts yet! Please wait until the party starts"}
+}
