@@ -1,7 +1,7 @@
 class CreateEvents < ActiveRecord::Migration
   def change
     create_table :events do |t|
-      t.boolean :event_status, default: TRUE
+      t.boolean :event_status
       t.datetime :start_time
       t.datetime :end_time
       t.string :wordnik

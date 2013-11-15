@@ -17,11 +17,14 @@ class Event < ActiveRecord::Base
   def start
     # set start time to now
     self.start_time = Time.now
+    self.end_time = self.start_time + 60 * 60 * 3
+    self.event_status = true
     self.save
   end
 
   def end
     self.end_time = Time.now
+    self.event_status = false
     self.save
     # set end time for any open players
   end

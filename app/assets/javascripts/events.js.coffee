@@ -37,12 +37,14 @@ $ ->
       btn.data("status", "end")
       btn.removeClass("btn-success")
       btn.addClass("btn-danger")
+      btn.text("End the party")
+      ajaxRequest("PUT")
     else if btn.data("status") is "end"
       btn.data("status", "start")
       btn.addClass("btn-success")
       btn.removeClass("btn-danger")
-    # ajaxRequest("PUT")
-    # alert "You've started the party!"
+      btn.text("Start the party again!")
+      ajaxRequest("PUT")
 
   $('#player-list').each ->
     checkPlayers()
