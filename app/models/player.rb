@@ -29,6 +29,15 @@ class Player < ActiveRecord::Base
     self.event_prompts.last.prompt.description
   end
 
+  def accept_invite
+    start_time = Time.now
+    self.update_attributes(accepted: true, start_time: start_time)
+  end
+
+  def self.create_by_passphrase(event, phone)
+    self.create(name: "passphrase_joiner", phone: phone, event_id: event.id)
+  end
+
 end
 
 

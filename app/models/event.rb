@@ -12,7 +12,7 @@ class Event < ActiveRecord::Base
   validates :party_type_id, presence: true
 
   # after_create :add_start_end_time
-  after_create :add_wordnik
+  before_create :add_wordnik
 
   def add_start_end_time
     # set start time to now

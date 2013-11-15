@@ -51,10 +51,6 @@ $test_vars = lambda {
   let(:rating) { Rating.create(name: "Super blush", value: 2) }
   let(:event) { Event.create(party_type_id: party.id, rating_id: rating.id) }
 
-  # MK adding the following line
-  let(:leave_text) {"Awww sorry to see you go!  Thanks for playing Leide Feier - see you next time!"}
-  let(:unknown_text) {"I don't know how to do that. Please respond with 'yes' to accept an invitation"}
-
   let(:prompt1) {
     Prompt.create( description: "Do something fun!", rating_id: rating.id)
   }
@@ -71,5 +67,10 @@ $test_vars = lambda {
 
   let(:invalid_phone){"+14154567891"}
 
+  let(:accepted_message){"Welcome #{player.name}! Please stay tuned for your first prompt. Text 'q' at any time to quit the game."}
+  let(:already_accepted_message){"You've already joined the game. If you want to leave, respond with 'd'."}
   let(:no_prompts_message){"You don't have any prompts yet! Please wait until the party starts"}
+  let(:instructions){" Respond with 'd' when done or 'p' to pass."}
+  let(:leave_text) {"Awww sorry to see you go!  Thanks for playing Leide Feier - see you next time!"}
+  let(:unknown_text) {"I don't know how to do that. Please respond with 'yes' to accept an invitation"}
 }
