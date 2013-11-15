@@ -36,8 +36,9 @@ describe Event do
 
   describe "Random Prompt" do
     it "should have a method random_prompt" do
+      party.prompts << prompt1
       event.should respond_to(:random_prompt)
-      # event.random_prompt.should == prompt1
+      event.random_prompt.should == prompt1
     end
   end
 
