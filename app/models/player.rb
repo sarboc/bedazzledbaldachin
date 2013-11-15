@@ -18,14 +18,12 @@ class Player < ActiveRecord::Base
 
 
   def format_phone_number
-    # takes phone number of player and ensures it is in the correct format
-    dirty_number = self.phone
-    # binding.pry
-    dirty_number.gsub!(/[^0-9]/, '')
-    unless dirty_number[0..1] == "+1"
-      dirty_number = "+1#{dirty_number}"
+    number = self.phone
+
+    unless number[0..1] == "+1"
+      number.gsub!(/[^0-9]/, '')
+      self.phone = "+1#{number}"
     end
-    self.phone = dirty_number
   end
 
 

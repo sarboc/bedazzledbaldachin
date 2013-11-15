@@ -51,17 +51,24 @@ describe Player do
       player.update_attributes(phone: dirty_number)
       player.reload.phone.should == "+14083072406"
   	end
+
   	it "should handle a phone number with spaces and dashes" do
       dirty_number = "408-307-2406"
       player.update_attributes(phone: dirty_number)
       player.reload.phone.should == "+14083072406"
   	end
+
   	it "should handle a phone number with spaces dashes and brackets" do
       dirty_number = "(408) 307-2406"
       player.update_attributes(phone: dirty_number)
       player.reload.phone.should == "+14083072406"
   	end
 
+    it "should not mess up an already perfect phone number" do
+      clean_number = "+14151234567"
+      player.update_attributes(phone: clean_number)
+      player.reload.phone.should == clean_number
+    end
 
   end
 
