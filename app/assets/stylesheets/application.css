@@ -14,13 +14,15 @@
  *= require_tree .
  */
 
-body { padding-top: 70px; }
-
+body {
+  padding-top: 70px;
+}
 
 .container {
   width: 300px;
   margin: auto;
-  border: 1px solid black;
+  background-color: white;
+  padding: 10px;
 }
 
 .top_right {
@@ -30,7 +32,7 @@ body { padding-top: 70px; }
 }
 
 .cat {
-  width: 250px;
+  width: 100%;
   margin: 0 auto;
   margin-bottom: 10px;
 }
@@ -38,8 +40,30 @@ body { padding-top: 70px; }
 .navbar {
   width: 300px;
   margin: auto;
+  background-color: #ecf0f1;
 }
 
 .right{
   float:right;
+}
+
+.wrench{
+  float: right;
+  margin-right: auto;
+  margin-left: 0;
+}
+
+#leder-btn{
+  width: 100%;
+  margin-top: 3px;
+  margin-bottom: 3px;
+  height: 50px;
+}
+
+#start-party{
+  margin-bottom: 3px;
+  margin-top: 3px;
+  width: 100%;
+  height: 75px;
+  font-size: 22px;
 }

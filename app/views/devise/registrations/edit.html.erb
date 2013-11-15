@@ -10,21 +10,21 @@
     <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
   <% end %>
   <div><%= f.label :phone_number %><br />
-  <%= f.telephone_field :phone %></div>
+  <%= f.telephone_field :phone, class: "form-control bfh-phone", 'data-format' => "+1 (ddd) ddd-dddd"  %></div>
 
   <div><%= f.label :name %><br />
-  <%= f.text_field :name %></div>
+  <%= f.text_field :name, class: "form-control" %></div>
 
   <div><%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
-  <%= f.password_field :password, :autocomplete => "off" %></div>
+  <%= f.password_field :password, :autocomplete => "off", class: "form-control" %></div>
 
   <div><%= f.label :password_confirmation %><br />
-  <%= f.password_field :password_confirmation %></div>
+  <%= f.password_field :password_confirmation, class: "form-control" %></div>
 
   <div><%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
-  <%= f.password_field :current_password %></div>
+  <%= f.password_field :current_password, class: "form-control" %></div>
 
-  <div><%= f.submit "Update" %></div>
+  <div><%= f.submit "Update", class: "btn btn-success" %></div>
 <% end %>
 
 <h3>Cancel my account</h3>

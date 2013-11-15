@@ -1,6 +1,7 @@
-<h1>Leder Feier</h1>
-<h3>Where parties are made</h3>
-
+<% if current_user.present? %>
+  <div class="alert alert-success">Welcome <%= current_user.name %></div>
+<% end %>
+<h3>Select party type</h3>
 <div class="buttons">
   <%= link_to "Dinner with Friends", new_event_path(party_type_id: 1), id: "dinner", class: "btn btn-primary cat", :method => :get %>
   <%= link_to "Raucous Gathering", new_event_path(party_type_id: 2), id: "dinner", class: "btn btn-primary cat", :method => :get %>

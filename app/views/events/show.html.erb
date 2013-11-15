@@ -1,18 +1,25 @@
-<%= @event.party_type_id %>
-<%= @event.start_time %>
-<%= @event.end_time %>
-<%= @event.wordnik %>
-
-<p>Invite Players:</p>
-<div id="player-form">
-  <form role="form">
-    Name: <input type="text" id="name" class="form-control" name="name">
-    Phone Number: <input type="text" class="form-control bfh-phone" data-format="+1 (ddd) ddd-dddd" id="phone" name="phone">
-    <input type="hidden" id="event_id" value="<%= @id %>" >
-    <button id="add-player">Add User</button>
-  </form>
+<script>setInterval(function() {return checkPlayers();}, 10000);
+</script>
+<div class="panel panel-success">
+  <div class="panel-heading">
+    <h3 class="panel-title">Invite Players:</h3>
+  </div>
+  <div class="panel-body">
+    <div id="player-form">
+      <form role="form">
+        Name: <input type="text" id="name" class="form-control" name="name">
+        Phone Number: <input type="text" class="form-control bfh-phone" data-format="+1 (ddd) ddd-dddd" id="phone" name="phone">
+        <input type="hidden" id="event_id" value="<%= @id %>" >
+        <button id="leder-btn" class="btn btn-info">Add User</button>
+      </form>
+    </div>
+  </div>
 </div>
-
-<div id="player-list">
-</div>
-<button id="start-party" class="btn btn-primary" value="<%= @id %>">Get this party started!</button>
+<table class="table" id="player-list">
+  <tr>
+    <th>Name</th>
+    <th>Phone #</th>
+    <th>Status</th>
+  </tr>
+</table>
+<button id="start-party" class="btn btn-warning" value="<%= @id %>">Get this party started!</button>
