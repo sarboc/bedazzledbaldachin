@@ -46,4 +46,26 @@ describe Event do
     end
   end
 
+  describe "start" do
+    it "should add a start time to the event" do
+      event.start_time.should be_nil
+      event.start
+      event.reload.start_time.should_not be_nil
+    end
+
+    it "should not add an end time to the event" do
+      event.start
+      event.reload.end_time.should be_nil
+    end
+  end
+
+  describe "end" do
+    it "should add an end time to the event" do
+      event.start
+      event.reload.end_time.should be_nil
+      event.end
+      event.reload.end_time.should_not be_nil
+    end
+  end
+
 end

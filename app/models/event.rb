@@ -14,12 +14,15 @@ class Event < ActiveRecord::Base
   # after_create :add_start_end_time
   before_create :add_wordnik
 
-  def add_start_end_time
+  def start
     # set start time to now
     self.start_time = Time.now
+    self.save
+  end
 
-    # set end time to now plus 3 hours
-    self.end_time = self.start_time + 60 * 60 * 3
+  def end
+    self.end_time = Time.now
+    self.save
   end
 
   def add_wordnik

@@ -37,13 +37,17 @@ class EventsController < ApplicationController
     @id = params[:id]
 
     @event = Event.find(@id)
-    @event.add_start_end_time
 
-    # MK get object with all registered players
-    party_players = @event.players
-    # MK iterate through players, sending the first prompt to each - the Party Starter!
-    party_players.each do |this_player|
-      send_text(this_player.phone, this_player.get_new_prompt)
+    unless @event.start_time
+      @event.start
+      # MK get object with all registered players
+      party_players = @event.players
+      # MK iterate through players, sending the first prompt to each - the Party Starter!
+      party_players.each do |this_player|
+        send_text(this_player.phone, this_player.get_new_prompt)
+      end
+    else
+      @event.end
     end
 
     render json: @event
