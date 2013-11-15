@@ -14,7 +14,7 @@ $ ->
     for item in data
       status = "Accepted" if item.accepted == true
       status = "Pending" if item.accepted == false
-      $('#player-list').append('<li>' + item.name + ': ' + item.phone + ': ' + status + '</li>' )
+      $('#player-list').append('<tr>' + '<th>' + item.name + '</th><th>' + item.phone + '</th><th>' + status + '</th>' )
 
   checkPlayers = () ->
     ajaxRequest("GET").done (data) ->
@@ -35,7 +35,3 @@ $ ->
     ajaxRequest("PUT")
     alert "You've started the party!"
 
-  checkPlayers()
-  setInterval () ->
-   checkPlayers()
-  , 10000

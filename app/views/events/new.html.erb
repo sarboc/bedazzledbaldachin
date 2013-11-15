@@ -1,7 +1,9 @@
 <%= form_for @event do |f| %>
   <p>Select a rating:</p>
-  <%= f.select(:rating_id, options_for_select([['PG', 1],['PG-13', 2],['R', 3]])) %>
+  <div class="btn-group">
+  <%= f.select :rating_id, options_for_select([['PG', 1],['PG-13', 2],['R', 3]]), class: "form-control" %>
+  </div>
   <%= f.hidden_field :party_type_id, value: @party_type_id %>
   <%= f.hidden_field :user_id, value: current_user.id %>
-  <%= f.submit %>
+  <%= f.submit 'Continue', class: 'btn btn-success', id: 'leder-btn' %>
 <% end %>
