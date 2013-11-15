@@ -10,7 +10,7 @@
     <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
   <% end %>
   <div class="form-group"><%= f.label :phone_number %><br />
-  <%= f.telephone_field :phone, class: "form-control bfh-phone", 'data-format' => "+1 (ddd) ddd-dddd"  %></div>
+  <%= f.telephone_field :phone, class: "form-control bfh-phone", 'data-format' => "(ddd) ddd-dddd"  %></div>
 
   <div class="form-group"><%= f.label :name %><br />
   <%= f.text_field :name, class: "form-control" %></div>

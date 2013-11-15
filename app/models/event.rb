@@ -23,6 +23,7 @@ class Event < ActiveRecord::Base
   def end
     self.end_time = Time.now
     self.save
+    # set end time for any open players
   end
 
   def add_wordnik

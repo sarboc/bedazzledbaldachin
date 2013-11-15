@@ -78,12 +78,6 @@ describe TwiliosHelper do
         player.reload.start_time.should_not be_nil
       end
 
-      # it "should set player end time to not nil" do
-      #   player.end_time.should be_nil
-      #   parse_message(player.phone, "yes")
-      #   player.reload.end_time.should_not be_nil
-      # end
-
       it "should not overide player start-time if user repeats yes-ish command" do
         player.start_time.should be_nil
         parse_message(player.phone, "yes")
