@@ -22,8 +22,8 @@ class Player < ActiveRecord::Base
     dirty_number = self.phone
     # binding.pry
     dirty_number.gsub!(/[^0-9]/, '')
-    unless dirty_number[0] == "+"
-      dirty_number = "+#{dirty_number}"
+    unless dirty_number[0..1] == "+1"
+      dirty_number = "+1#{dirty_number}"
     end
     self.phone = dirty_number
   end

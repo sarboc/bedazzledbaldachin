@@ -41,23 +41,23 @@ describe Player do
   describe "format_phone_number" do
 
   	it "should handle a perfect phone number" do
-      perfect_number = "+14083072406"
+      perfect_number = "4083072406"
       player.update_attributes(phone: perfect_number)
       player.reload.phone.should == "+14083072406"
   	end
 
   	it "should handle a phone number with spaces" do
-      dirty_number = "+1 408 307 2406"
+      dirty_number = "408 307 2406"
       player.update_attributes(phone: dirty_number)
       player.reload.phone.should == "+14083072406"
   	end
   	it "should handle a phone number with spaces and dashes" do
-      dirty_number = "+1 408-307-2406"
+      dirty_number = "408-307-2406"
       player.update_attributes(phone: dirty_number)
       player.reload.phone.should == "+14083072406"
   	end
   	it "should handle a phone number with spaces dashes and brackets" do
-      dirty_number = "+1 (408) 307-2406"
+      dirty_number = "(408) 307-2406"
       player.update_attributes(phone: dirty_number)
       player.reload.phone.should == "+14083072406"
   	end
