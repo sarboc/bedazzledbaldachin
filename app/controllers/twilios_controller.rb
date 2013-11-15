@@ -1,4 +1,5 @@
 class TwiliosController < ApplicationController
+include TwiliosHelper
 
 require 'rubygems'          # This line not needed for ruby > 1.8
 require 'twilio-ruby'
