@@ -14,11 +14,12 @@
           <input type="tel" class="form-control bfh-phone" data-format="(ddd) ddd-dddd" id="phone" name="phone">
         </div>
         <input type="hidden" id="event_id" value="<%= @id %>" >
-        <button id="leder-btn" class="btn btn-info">Add Player</button>
+        <button id="add-player" class="btn btn-info leder">Add Player</button>
       </form>
     </div>
   </div>
 </div>
+<button id="party-btn" class="btn btn-success btn-big" data-status="start" value="<%= @id %>">Get this party started!</button>
 <div id="player-list">
   <h4>Invited Players</h4>
   <table class="table">
@@ -31,4 +32,3 @@
     </tbody>
   </table>
 </div>
-<button id="party-btn" class="btn btn-success btn-big" data-status="start" value="<%= @id %>">Get this party started!</button>
