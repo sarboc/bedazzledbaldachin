@@ -40,7 +40,7 @@ describe Player do
 
   describe "format_phone_number" do
 
-  	it "should handle a perfect phone number" do #, focus: true do
+  	it "should handle a perfect phone number" do
       perfect_number = "+14083072406"
       player.update_attributes(phone: perfect_number)
       player.reload.phone.should == "+14083072406"
