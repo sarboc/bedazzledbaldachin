@@ -1,6 +1,5 @@
 class EventsController < ApplicationController
   before_filter :authenticate_user!
-  include EventsHelper
   require 'rubygems'          # This line not needed for ruby > 1.8
   require 'twilio-ruby'
 # Get twilio-ruby from twilio.com/docs/ruby/install
