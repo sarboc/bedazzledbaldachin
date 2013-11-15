@@ -20,7 +20,7 @@ $ ->
     ajaxRequest("GET").done (data) ->
       updatePlayerList(data)
 
-  $('#add-player').click ->
+  $('#leder-btn').click ->
     event.preventDefault()
     $phone = $("#phone").val()
     $name = $("#name").val()
