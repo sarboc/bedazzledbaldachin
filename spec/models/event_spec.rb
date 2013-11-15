@@ -24,7 +24,7 @@ describe Event do
 
   it "should auto-assign a wordnik passphrase" do
     event.should respond_to(:wordnik)
-    event.wordnik.should_not be_nil
+    event.reload.wordnik.should_not be_nil
 
     # make sure there are two words separated by a space
     event.wordnik.should include(" ")

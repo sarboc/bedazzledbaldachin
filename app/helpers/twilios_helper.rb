@@ -7,35 +7,54 @@ module TwiliosHelper
     # see if a player exists
     player = Player.find_by_phone(phone)
 
+
+
     if player
-      # person belongs to a game, so send them a message
-      case message.downcase
-        when "y", "yes", "accept", "ok"
-          accept(player)
-        when /done/ #two slashes are a regex to match any text that has a "pass" in it
-          new_prompt(player, :completed)
-        when /pass/
-          new_prompt(player, :passed)
-        when "leave"
-          leave(player)
-        else
-          random_message(player)
+      # if player joined via passphrase, the next text gets stored as their name
+      if player.name == "passphrase_joiner"
+        player.update_attributes(name: message)
+        "Welcome, #{player.name}!"
+      else
+        # person belongs to a game and has a name, so send them a message
+        case message.downcase
+          when "y", /yes/, /accept/, "ok"
+            accept(player)
+          when "'d'", "d", /done/, /complete/
+            new_prompt(player, :completed)
+          when "'p'", "p", /pass/
+            new_prompt(player, :passed)
+          when "'q'", "q", /leave/, /quit/
+            leave(player)
+          when "'h'", "h", /help/
+            help_message
+          else
+            random_message(player)
+        end
       end
     else
-      # player doesn't belong to a game
-      "We don't know who you are. Sorry. Visit www.lederfeier.com to learn more."
+      # player doesn't belong to a game; see if they are trying to join an event
+      event = Event.find_by_wordnik(message.downcase)
+
+      # if an event exists with that passphrase, add the person as a player
+      if event
+        join_by_passphrase(event, phone)
+
+      # else, send them a message about our app
+      else
+        "We don't know who you are. Sorry. Visit www.lederfeier.com to learn more."
+      end
     end
 
   end
 
-    def new_prompt(player, column)
+  def new_prompt(player, column)
     # if prompt, mark prompt as either passed or completed and send new prompt
     if player.event_prompts.last
       # use symbol passed to function as the column name for the update
       player.event_prompts.last.update_attributes(column => true)
 
       # send back a new prompt for the player
-      player.get_new_prompt
+      "#{player.get_new_prompt} Respond with 'd' when done or 'p' to pass."
 
     # if no prompt, then the game hasn't started yet
     else
@@ -43,6 +62,9 @@ module TwiliosHelper
     end
   end
 
+  def help_message
+    "Respond with 'd' to mark a prompt as done, 'p' to pass a prompt, 'q' to quit the game."
+  end
 
   def leave(player)
     # mark end time for user
@@ -58,14 +80,18 @@ module TwiliosHelper
   def accept(player)
     # change player accepted to true
     unless player.accepted
-      player.update_attributes(accepted: true)
-      start_time = Time.now
-      end_time = start_time + 60 * 60 * 3
-      player.update_attributes(start_time: start_time, end_time: end_time)
-      "Welcome #{player.name}! Please stay tuned for your first prompt."
+      player.accept_invite
+      # end_time = start_time + 60 * 60 * 3
+      "Welcome #{player.name}! Please stay tuned for your first prompt. Text 'q' at any time to quit the game."
     else
-      "You've already joined the game."
+      "You've already joined the game. If you want to leave, respond with 'd'."
     end
+  end
+
+  def join_by_passphrase(event, phone)
+    player = Player.create_by_passphrase(event, phone)
+    player.accept_invite
+    "Thanks for joining! What's your name?"
   end
 
   def random_message(player)
