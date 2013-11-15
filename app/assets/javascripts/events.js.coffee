@@ -35,3 +35,9 @@ $ ->
     ajaxRequest("PUT")
     alert "You've started the party!"
 
+  $('#player-list').each ->
+    checkPlayers()
+    setInterval () ->
+      checkPlayers()
+      console.log "The setinterval is running"
+    , 10000
