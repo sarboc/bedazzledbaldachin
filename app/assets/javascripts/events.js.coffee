@@ -10,11 +10,11 @@ $ ->
     )
 
   updatePlayerList = (data) ->
-    $('#player-list').empty()
+    $('#player-list table tbody').empty()
     for item in data
       status = "Accepted" if item.accepted == true
       status = "Pending" if item.accepted == false
-      $('#player-list').append('<tr>' + '<th>' + item.name + '</th><th>' + item.phone + '</th><th>' + status + '</th>' )
+      $('#player-list table tbody').append('<tr>' + '<td>' + item.name + '</td><td>' + item.phone + '</td><td>' + status + '</td></tr>' )
 
   checkPlayers = () ->
     ajaxRequest("GET").done (data) ->
@@ -48,5 +48,4 @@ $ ->
     checkPlayers()
     setInterval () ->
       checkPlayers()
-      console.log "The setinterval is running"
     , 10000

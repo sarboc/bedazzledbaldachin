@@ -19,21 +19,16 @@
     </div>
   </div>
 </div>
-<h4>Invited Players</h4>
-<table class="table" id="player-list">
-  <tr>
-    <th>Name</th>
-    <th>Phone #</th>
-    <th>Status</th>
-  </tr>
-  <tbody>
-    <% @players.each do |player| %>
-      <tr>
-        <td><%= player.name %></td>
-        <td><%= player.phone %></td>
-        <td><%= player.accepted ? "Accepted" : "Pending" %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+<div id="player-list">
+  <h4>Invited Players</h4>
+  <table class="table">
+    <thead>
+      <th>Name</th>
+      <th>Phone #</th>
+      <th>Status</th>
+    </thead>
+    <tbody>
+    </tbody>
+  </table>
+</div>
 <button id="party-btn" class="btn btn-success btn-big" data-status="start" value="<%= @id %>">Get this party started!</button>
