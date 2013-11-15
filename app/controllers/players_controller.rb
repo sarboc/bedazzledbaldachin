@@ -1,5 +1,4 @@
 class PlayersController < ApplicationController
-  include EventsHelper
   require 'rubygems'          # This line not needed for ruby > 1.8
   require 'twilio-ruby'
 
