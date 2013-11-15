@@ -24,15 +24,15 @@ ActiveRecord::Schema.define(:version => 20131113220344) do
   end
 
   create_table "events", :force => true do |t|
-    t.boolean  "event_status",  :default => true
+    t.boolean  "event_status"
     t.datetime "start_time"
     t.datetime "end_time"
     t.string   "wordnik"
     t.integer  "party_type_id"
     t.integer  "rating_id"
     t.integer  "user_id"
-    t.datetime "created_at",                      :null => false
-    t.datetime "updated_at",                      :null => false
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
   end
 
   create_table "party_type_prompts", :force => true do |t|

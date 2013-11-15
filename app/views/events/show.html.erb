@@ -5,19 +5,30 @@
   <div class="panel-body">
     <div id="player-form">
       <form role="form">
-        Name: <input type="text" id="name" class="form-control" name="name">
-        Phone Number: <input type="text" class="form-control bfh-phone" data-format="+1 (ddd) ddd-dddd" id="phone" name="phone">
+        <div class="form-group">
+          <label>Name:</label>
+          <input type="text" id="name" class="form-control" name="name">
+        </div>
+        <div class="form-group">
+          <label>Phone Number:</label>
+          <input type="tel" class="form-control bfh-phone" data-format="(ddd) ddd-dddd" id="phone" name="phone">
+        </div>
         <input type="hidden" id="event_id" value="<%= @id %>" >
-        <button id="leder-btn" class="btn btn-info">Add User</button>
+        <button id="leder-btn" class="btn btn-info">Add Player</button>
       </form>
     </div>
   </div>
 </div>
-<table class="table" id="player-list">
-  <tr>
-    <th>Name</th>
-    <th>Phone #</th>
-    <th>Status</th>
-  </tr>
-</table>
-<button id="start-party" class="btn btn-warning" value="<%= @id %>">Get this party started!</button>
+<div id="player-list">
+  <h4>Invited Players</h4>
+  <table class="table">
+    <thead>
+      <th>Name</th>
+      <th>Phone #</th>
+      <th>Status</th>
+    </thead>
+    <tbody>
+    </tbody>
+  </table>
+</div>
+<button id="party-btn" class="btn btn-success btn-big" data-status="start" value="<%= @id %>">Get this party started!</button>

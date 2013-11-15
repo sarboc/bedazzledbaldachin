@@ -4,11 +4,6 @@ describe Event do
 
   self.instance_exec &$test_vars
 
-  it "should have a status automatically set to true" do
-    event.should respond_to(:event_status)
-    event.event_status.should == true
-  end
-
   it "should belong to party_type" do
     event.should respond_to(:party_type_id)
     event.party_type_id.should == party.id
@@ -43,6 +38,31 @@ describe Event do
     it "should have a method random_prompt" do
       event.should respond_to(:random_prompt)
       # event.random_prompt.should == prompt1
+    end
+  end
+
+  describe "start" do
+    it "should add a start time to the event" do
+      event.start_time.should be_nil
+      event.start
+      event.reload.start_time.should_not be_nil
+    end
+
+    it "sets the event status to true" do
+      event.start
+      event.reload.event_status.should be_true
+    end
+  end
+
+  describe "end" do
+    it "should add an end time to the event" do
+      event.end
+      event.reload.end_time.should_not be_nil
+    end
+
+    it "should set event status to false" do
+      event.end
+      event.reload.event_status.should be_false
     end
   end
 

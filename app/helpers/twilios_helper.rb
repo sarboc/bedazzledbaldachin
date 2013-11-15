@@ -81,7 +81,6 @@ module TwiliosHelper
     # change player accepted to true
     unless player.accepted
       player.accept_invite
-      # end_time = start_time + 60 * 60 * 3
       "Welcome #{player.name}! Please stay tuned for your first prompt. Text 'q' at any time to quit the game."
     else
       "You've already joined the game. If you want to leave, respond with 'd'."

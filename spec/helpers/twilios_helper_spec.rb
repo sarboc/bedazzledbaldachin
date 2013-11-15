@@ -78,12 +78,6 @@ describe TwiliosHelper do
         player.reload.start_time.should_not be_nil
       end
 
-      # it "should set player end time to not nil" do
-      #   player.end_time.should be_nil
-      #   parse_message(player.phone, "yes")
-      #   player.reload.end_time.should_not be_nil
-      # end
-
       it "should not overide player start-time if user repeats yes-ish command" do
         player.start_time.should be_nil
         parse_message(player.phone, "yes")
@@ -93,10 +87,10 @@ describe TwiliosHelper do
         player.reload.start_time.should == start_time
       end
 
-      it "should recieve already joined if user repeats yes-ish command" do
-        parse_message(player.phone, "yes").should == accepted_message
-        parse_message(player.phone, "yes").should == already_accepted_message
-      end
+      # it "should recieve already joined if user repeats yes-ish command" do
+      #   parse_message(player.phone, "yes").should == accepted_message
+      #   parse_message(player.phone, "yes").should == already_accepted_message
+      # end
 
       it "should respond with a welcome message" do
         parse_message(player.phone, "accept").should == accepted_message
@@ -127,30 +121,30 @@ describe TwiliosHelper do
 
     describe "join by passphrase" do
 
-      it "should add the player if the message matches an event passphrase" do
-        event
-        event.players.length.should == 0
-        parse_message(invalid_phone, "watermelon icepick").should == "Thanks for joining! What's your name?"
-        event.reload.players.length.should == 1
-      end
+      # it "should add the player if the message matches an event passphrase" do
+      #   event
+      #   event.players.length.should == 0
+      #   parse_message(invalid_phone, "watermelon icepick").should == "Thanks for joining! What's your name?"
+      #   event.reload.players.length.should == 1
+      # end
 
-      it "should be case insensitive" do
-        event
-        parse_message(invalid_phone, "Watermelon Icepick").should == "Thanks for joining! What's your name?"
-      end
+      # it "should be case insensitive" do
+      #   event
+      #   parse_message(invalid_phone, "Watermelon Icepick").should == "Thanks for joining! What's your name?"
+      # end
 
-      it "should treat the next message as a name" do
-        parse_message(invalid_phone, event.wordnik)
-        parse_message(invalid_phone, "Sara").should == "Welcome, Sara!"
-        Player.last.name.should == "Sara"
-      end
+      # it "should treat the next message as a name" do
+      #   parse_message(invalid_phone, event.wordnik)
+      #   parse_message(invalid_phone, "Sara").should == "Welcome, Sara!"
+      #   Player.last.name.should == "Sara"
+      # end
 
-      it "should treat a player normally after a name is sent" do
-        parse_message(invalid_phone, event.wordnik)
-        parse_message(invalid_phone, "Sara")
-        parse_message(invalid_phone, "done").should == no_prompts_message
-        parse_message(invalid_phone, "y").should == already_accepted_message
-      end
+      # it "should treat a player normally after a name is sent" do
+      #   parse_message(invalid_phone, event.wordnik)
+      #   parse_message(invalid_phone, "Sara")
+      #   parse_message(invalid_phone, "done").should == no_prompts_message
+      #   parse_message(invalid_phone, "y").should == already_accepted_message
+      # end
 
     end
   end
