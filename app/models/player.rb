@@ -5,12 +5,29 @@ class Player < ActiveRecord::Base
   has_many :prompts, through: :event_prompts
   belongs_to :event
 
+  before_save :format_phone_number
+  # east to add RSPEC to this
+
+
   validates :name, presence: true
   validates :phone, presence: true
   validates :event_id, presence: true
   #validates :phone, :phone_number => {:ten_digits => true}
   # validates :start_time, presence: true
   # validates :end_time, presence: true
+
+
+  def format_phone_number
+    # takes phone number of player and ensures it is in the correct format
+    dirty_number = self.phone
+    # binding.pry
+    dirty_number.gsub!(/[^0-9]/, '')
+    unless dirty_number[0] == "+"
+      dirty_number = "+#{dirty_number}"
+    end
+    self.phone = dirty_number
+  end
+
 
   def get_new_prompt
     # create a new event_prompt
