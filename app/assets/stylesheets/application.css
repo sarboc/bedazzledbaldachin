@@ -71,3 +71,11 @@ body {
 .hidden {
   display: none;
 }
+
+.passphrase h3 {
+  margin-top: 0;
+}
+
+.passphrase {
+  padding-bottom: 10px;
+}

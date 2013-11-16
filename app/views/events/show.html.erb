@@ -19,6 +19,13 @@
     </div>
   </div>
 </div>
+<div class="passphrase text-center">
+  <p>or have players text</p>
+  <h3><%= @event.wordnik.downcase %></h3>
+  <p>- to -</p>
+  <h3><%= "(#{ENV["phone"][2..4]}) #{ENV["phone"][5..7]} - #{ENV["phone"][8..11]}" %></h3>
+</div>
+
 <% unless @event.event_status == false %>
   <%= button_to "Get this party started!", "/", class: "btn btn-success btn-big #{'hide' if @event.event_status == true}", id: "party-start-btn", value: "#{@id}" %>
 

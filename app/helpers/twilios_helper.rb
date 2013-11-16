@@ -13,7 +13,13 @@ module TwiliosHelper
       # if player joined via passphrase, the next text gets stored as their name
       if player.name == "passphrase_joiner"
         player.update_attributes(name: message)
-        "Welcome, #{player.name}!"
+
+        if player.event.event_status == true
+          player.send_text("Welcome #{player.name}! Text 'q' at any time to quit the game.")
+          "#{player.get_new_prompt} Respond with 'd' when done or 'p' to pass."
+        else
+          "Welcome #{player.name}! Please stay tuned for your first prompt. Text 'q' at any time to quit the game."
+        end
       else
         # person belongs to a game and has a name, so send them a message
         case message.downcase

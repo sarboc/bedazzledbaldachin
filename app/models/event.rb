@@ -50,7 +50,7 @@ class Event < ActiveRecord::Base
     end
 
     # sets the wordnik phrase for this party to a string of word1 + word2
-    self.wordnik = "#{word1} #{word2}"
+    self.wordnik = "#{word1.downcase} #{word2.downcase}"
   end
 
   def get_random_word
