@@ -107,6 +107,8 @@ describe TwiliosHelper do
         event.start
         parse_message(player.phone, "yes")
         player.reload.event_prompts.length.should == 1
+        open_last_text_message_for player.phone
+        current_text_message.should have_body accepted_message
       end
     end
 

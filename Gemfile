@@ -34,7 +34,7 @@ gem 'jquery-rails'
 
 group :development, :test do
   gem 'rspec-rails'
-  # gem 'sms-spec'
+  gem 'sms-spec'
   gem 'shoulda-matchers'
   gem 'pry'
   gem 'pry-rails'

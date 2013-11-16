@@ -112,11 +112,11 @@ describe Player do
   end
 
   describe "send text" do
-    # it "should send a message to the player's phone" do
-    #   player.send_text("Hello")
-    #   open_last_text_message_for player.phone
-    #   current_text_message.should have_body "Hello"
-    # end
+    it "should send a message to the player's phone" do
+      player.send_text("Hello")
+      open_last_text_message_for player.phone
+      current_text_message.should have_body "Hello"
+    end
   end
 
   describe "leave" do

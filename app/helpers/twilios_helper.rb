@@ -15,7 +15,7 @@ module TwiliosHelper
         player.update_attributes(name: message)
 
         if player.event.event_status == true
-          player.send_text("Welcome #{player.name}! Text 'q' at any time to quit the game.")
+          player.send_text("Welcome #{player.name}! Please stay tuned for your first prompt. Text 'q' at any time to quit the game.")
           "#{player.get_new_prompt} Respond with 'd' when done or 'p' to pass."
         else
           "Welcome #{player.name}! Please stay tuned for your first prompt. Text 'q' at any time to quit the game."
@@ -83,7 +83,7 @@ module TwiliosHelper
       player.accept_invite
 
       if player.event.event_status == true
-        player.send_text("Welcome #{player.name}! Text 'q' at any time to quit the game.")
+        player.send_text("Welcome #{player.name}! Please stay tuned for your first prompt. Text 'q' at any time to quit the game.")
         "#{player.get_new_prompt} Respond with 'd' when done or 'p' to pass."
       else
         "Welcome #{player.name}! Please stay tuned for your first prompt. Text 'q' at any time to quit the game."

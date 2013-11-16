@@ -69,9 +69,17 @@ describe Event do
       event.reload.start_time.should_not be_nil
     end
 
-    it "sets the event status to true" do
+    it "should set the event status to true" do
       event.start
       event.reload.event_status.should be_true
+    end
+
+    it "should send a prompt to all accepted players" do
+      party.prompts << prompt1
+      player.accept_invite
+      event.start
+      open_last_text_message_for player.phone
+      current_text_message.should have_body prompt1.description + instructions
     end
   end
 
