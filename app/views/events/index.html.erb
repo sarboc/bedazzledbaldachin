@@ -1,6 +1,7 @@
 <% if current_user.present? %>
   <div class="alert alert-success">Welcome <%= current_user.name %></div>
 <% end %>
+<%= button_to "Create a Party", new_event_path, method: :get, class: "btn btn-big btn-primary leder" %>
 <table class="table">
   <thead>
     <th>Passphrase</th>
@@ -10,7 +11,7 @@
   <tbody>
     <% @events.each do |event| %>
     <tr>
-      <td><a href="events/<%= event.id %>"><%= event.wordnik %></a></td>
+      <td><%= link_to "#{event.wordnik}", event_path(event.id) %></td>
       <td>
         <%= "Pending" if event.event_status == nil %>
         <%= "Started" if event.event_status == true %>
@@ -21,5 +22,4 @@
     <% end %>
   </tbody>
 </table>
-<%= button_to "Create a Party", new_event_path, method: :get, class: "btn btn-success leder" %>
 
