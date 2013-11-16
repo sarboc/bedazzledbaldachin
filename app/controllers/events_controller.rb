@@ -15,7 +15,7 @@ class EventsController < ApplicationController
 
   def create
     @event = Event.create(params[:event])
-    Player.create(name: current_user.name, phone: current_user.phone, event_id: @event.id)
+    party_master = Player.create(name: current_user.name, phone: current_user.phone, event_id: @event.id, accepted: true)
     redirect_to event_path(@event.id)
   end
 

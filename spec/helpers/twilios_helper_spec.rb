@@ -154,6 +154,12 @@ describe TwiliosHelper do
       end
 
     end
+
+    describe "random message" do
+      it "should let player know how to ask for help" do
+        parse_message(player.phone, "h").should == help_message
+      end
+    end
   end
 end
 

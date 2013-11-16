@@ -59,19 +59,20 @@ $test_vars = lambda {
     Prompt.create(description: "Do something boring!", rating_id: rating2.id)
   }
 
-  let(:phone){"+15102346789"}
+  let(:phone){"+15559876543"}
   let(:name){"Miriam"}
   let(:player) { Player.create(name: name, phone: phone, event_id: event.id) }
 
   let(:player_prompt) { EventPrompt.create(event_id: event.id, player_id: player.id, prompt_id: prompt1.id)}
 
-  let(:invalid_phone){"+14154567891"}
+  let(:invalid_phone){"+15551234567"}
 
   let(:accepted_message){"Welcome #{player.name}! Please stay tuned for your first prompt. Text 'q' at any time to quit the game."}
   let(:already_accepted_message){"You've already joined the game. If you want to leave, respond with 'd'."}
   let(:no_prompts_message){"You don't have any prompts yet! Please wait until the party starts"}
   let(:instructions){" Respond with 'd' when done or 'p' to pass."}
-  let(:leave_text) {"Awww sorry to see you go!  Thanks for playing Leide Feier - see you next time!"}
+  let(:leave_text) {"Awww sorry to see you go! Thanks for playing Lederfeier - see you next time!"}
   let(:unknown_player_text) {"We don't know who you are. Sorry. Visit www.lederfeier.com to learn more."}
-  let(:unknown_text) {"I don't know how to do that. Please respond with 'yes' to accept an invitation"}
+  let(:unknown_text) {"I don't know how to do that. Please respond with 'h' for help."}
+  let(:help_message) {"Respond with 'y' to accept an invitation, 'd' to mark a prompt as done, 'p' to pass a prompt, 'q' to quit the game."}
 }

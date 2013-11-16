@@ -63,12 +63,12 @@ module TwiliosHelper
   end
 
   def help_message
-    "Respond with 'd' to mark a prompt as done, 'p' to pass a prompt, 'q' to quit the game."
+    "Respond with 'y' to accept an invitation, 'd' to mark a prompt as done, 'p' to pass a prompt, 'q' to quit the game."
   end
 
   def leave(player)
     player.leave
-    "Awww sorry to see you go!  Thanks for playing Leide Feier - see you next time!"
+    "Awww sorry to see you go! Thanks for playing Lederfeier - see you next time!"
   end
 
   def accept(player)
@@ -89,8 +89,9 @@ module TwiliosHelper
 
   def random_message(player)
     # if user has not accepted, send message with ways to join
+
     # if user has accepted, send message with ways to leave
-    "I don't know how to do that. Please respond with 'yes' to accept an invitation"
+    "I don't know how to do that. Please respond with 'h' for help."
   end
 
 end

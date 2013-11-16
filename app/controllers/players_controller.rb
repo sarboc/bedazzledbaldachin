@@ -4,7 +4,6 @@ class PlayersController < ApplicationController
 
   def create
     @player = Player.create(params[:player])
-    binding.pry
     text = "Hi #{@player.name}. #{current_user.name} has invited you to play Lederfeier. Please reply with 'y' to accept."
     @player.send_text(text)
     render :json => @player
