@@ -1,0 +1,97 @@
+<html>
+<head>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+  <script type="text/javascript">var NREUMQ=NREUMQ||[];NREUMQ.push(["mark","firstbyte",new Date().getTime()]);</script>
+  <title>Lederfeier</title>
+    <script>
+      function flashtext(ele,col) {
+      var tmpColCheck = document.getElementById( ele ).style.color;
+
+        if (tmpColCheck === 'white') {
+          document.getElementById( ele ).style.color = col;
+        } else {
+          document.getElementById( ele ).style.color = 'white';
+        }
+
+      }
+
+      setInterval(function() {
+          flashtext('flashingtext','red');
+      }, 10000 );
+    </script>
+    <style>
+      body {
+        text-align: center;
+        background-size: contain;
+        color: red;
+      }
+      #flashingtext{
+        font-family: Trebuchet MS, sans-serif;
+        font-size: 45px;
+        color: white;
+        padding: 30px 20px 0px 20px;
+        background-color: black;
+        margin-bottom: 3px;
+        margin-top: 3px;
+        width: 100%;
+        height: 75px;
+        text-align: left;
+      }
+      #screen1 {
+        background-image: url("app/imagesproductshot.png");
+      }
+      h2
+      {
+        font-family: Trebuchet MS, sans-serif;
+        padding: 10px;
+        color: white;
+        font-size: 20px;
+        background: silver;
+        }
+      #play_button {
+        position: relative;
+        z-index: 10;
+        font-size:22px;
+        margin: -100px 0px 100px -500px;
+      }
+
+      #sitelinks {
+        text-align: right;
+      }
+
+    </style>
+</head>
+<body>
+
+
+<div id='screen1'>
+  <div id="flashingtext" style="color: red"> Lederfeier    <a href="#screen2" id='sitelinks'> about</a>    <a href="#screen3" id='sitelinks'> team </a> </div>
+  <h2>your party just got hotter.</h2>
+  <div> <%= image_tag "productshot.png"%> </div>
+  <button id='play_button' type="button" class="btn btn-info" > Play the game for free</button> <hr>
+</div>
+
+<div id='screen2'>
+  <a name='screen2'>
+  <h2>about this badass app.</h2>
+  </a>
+  <hr>
+  <p> Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+  Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
+</div>
+
+<div id='screen3'>
+  <a name='screen3'>
+  <h2>our team.</h2>
+  </a>
+  <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. </p>
+  <hr>
+</div>
+
+
+</body>
+</html>
+
+
+
+
