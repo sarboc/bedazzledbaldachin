@@ -20,11 +20,19 @@ class Event < ActiveRecord::Base
     self.end_time = self.start_time + 60 * 60 * 3
     self.event_status = true
     self.save
+
+    # iterate through accepted players, sending the first prompt to each - the Party Starter!
+    self.players.where("accepted is true").each do |player|
+      player.send_text("#{player.get_new_prompt} Respond with 'd' when done or 'p' to pass.")
+    end
   end
 
   def end
     self.end_time = Time.now
     self.event_status = false
+    self.players.where("end_time is null").each do |player|
+      player.update_attributes(end_time: Time.now)
+    end
     self.save
     # set end time for any open players
   end
@@ -42,7 +50,7 @@ class Event < ActiveRecord::Base
     end
 
     # sets the wordnik phrase for this party to a string of word1 + word2
-    self.wordnik = "#{word1} #{word2}"
+    self.wordnik = "#{word1.downcase} #{word2.downcase}"
   end
 
   def get_random_word

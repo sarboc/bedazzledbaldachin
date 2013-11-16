@@ -67,3 +67,15 @@ body {
   height: 75px;
   font-size: 22px;
 }
+
+.hidden {
+  display: none;
+}
+
+.passphrase h3 {
+  margin-top: 0;
+}
+
+.passphrase {
+  padding-bottom: 10px;
+}

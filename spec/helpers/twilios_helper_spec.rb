@@ -6,7 +6,12 @@ describe TwiliosHelper do
   describe "parse_message" do
 
     it "should return an error if a messager is not a player" do
-      parse_message(invalid_phone, "anything") == "We don't know who you are. Sorry. Visit www.lederfeier.com to learn more."
+      parse_message(invalid_phone, "anything") == unknown_player_text
+    end
+
+    it "should not know a player if player end_time is not null" do
+      player.leave
+      parse_message(player.phone, "next").should == unknown_player_text
     end
 
     describe "done and pass" do
@@ -96,6 +101,15 @@ describe TwiliosHelper do
       it "should respond with a welcome message" do
         parse_message(player.phone, "accept").should == accepted_message
       end
+
+      it "should send a message if the party has already started" do
+        party.prompts << prompt1
+        event.start
+        parse_message(player.phone, "yes")
+        player.reload.event_prompts.length.should == 1
+        open_last_text_message_for player.phone
+        current_text_message.should have_body accepted_message
+      end
     end
 
     describe "leave" do
@@ -137,8 +151,8 @@ describe TwiliosHelper do
 
       it "should treat the next message as a name" do
         parse_message(invalid_phone, event.wordnik)
-        sara = Player.last
-        parse_message(sara.phone, "Sara").should == "Welcome, Sara!"
+        player = Player.last
+        parse_message(player.phone, "Sara").should == "Welcome Sara! Please stay tuned for your first prompt. Text 'q' at any time to quit the game."
       end
 
       it "should treat a player normally after a name is sent" do
@@ -148,6 +162,27 @@ describe TwiliosHelper do
         parse_message(invalid_phone, "y").should == already_accepted_message
       end
 
+      it "should not allow a player to join if the event has ended" do
+        event.end
+        parse_message(invalid_phone, event.wordnik).should == unknown_player_text
+      end
+
+      it "should send a prompt if the event has already started" do
+        party.prompts << prompt1
+        event.start
+        parse_message(invalid_phone, event.wordnik)
+        player = Player.last
+        player.prompts.length.should == 0
+        parse_message(invalid_phone, "Sara")
+        player.reload.prompts.length.should == 1
+      end
+
+    end
+
+    describe "random message" do
+      it "should let player know how to ask for help" do
+        parse_message(player.phone, "h").should == help_message
+      end
     end
   end
 end

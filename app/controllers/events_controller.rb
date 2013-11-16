@@ -15,7 +15,7 @@ class EventsController < ApplicationController
 
   def create
     @event = Event.create(params[:event])
-    Player.create(name: current_user.name, phone: current_user.phone, event_id: @event.id)
+    party_master = Player.create(name: current_user.name, phone: current_user.phone, event_id: @event.id, accepted: true)
     redirect_to event_path(@event.id)
   end
 
@@ -42,21 +42,14 @@ class EventsController < ApplicationController
     if @event.event_status == nil
       @event.start
 
-      party_players = @event.players
-      # iterate through players, sending the first prompt to each - the Party Starter!
-      party_players.each do |this_player|
-        send_text(this_player.phone, this_player.get_new_prompt)
-      end
-
     # if a party has already been started, stop it
     elsif @event.event_status == true
       @event.end
-
-    # if a party has been stopped, restart it
-    elsif @event.event_status == false
-      @event.start
     end
 
-    render json: @event
+    respond_to do |format|
+      format.html {redirect_to events_path}
+      format.json {render json: @event}
+    end
   end
 end

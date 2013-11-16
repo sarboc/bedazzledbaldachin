@@ -4,11 +4,8 @@ class PlayersController < ApplicationController
 
   def create
     @player = Player.create(params[:player])
-    phone = @player.phone
-    text = "Hi #{@player.name}. #{current_user.name} invited you to play. Please reply with 'y' to accept."
-    send_text(phone, text)
-    event_id = @player.event_id
-    @players = Player.find_by_event_id(event_id)
-    render :json => @players
+    text = "Hi #{@player.name}. #{current_user.name} has invited you to play Lederfeier. Please reply with 'y' to accept."
+    @player.send_text(text)
+    render :json => @player
   end
 end

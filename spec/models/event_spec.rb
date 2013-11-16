@@ -17,6 +17,26 @@ describe Event do
     event.rating.should == rating
   end
 
+  it "should belong to user" do
+    event.should respond_to(:user)
+  end
+
+  it "should have many prompts" do
+    event.should respond_to(:prompts)
+  end
+
+  it "should have many players" do
+    event.should respond_to(:players)
+  end
+
+  it "should have many event_prompts" do
+    event.should respond_to(:event_prompts)
+  end
+
+  it "should have many prompts" do
+    event.should respond_to(:prompts)
+  end
+
   it "should auto-assign a wordnik passphrase" do
     event.should respond_to(:wordnik)
     event.reload.wordnik.should_not be_nil
@@ -49,9 +69,17 @@ describe Event do
       event.reload.start_time.should_not be_nil
     end
 
-    it "sets the event status to true" do
+    it "should set the event status to true" do
       event.start
       event.reload.event_status.should be_true
+    end
+
+    it "should send a prompt to all accepted players" do
+      party.prompts << prompt1
+      player.accept_invite
+      event.start
+      open_last_text_message_for player.phone
+      current_text_message.should have_body prompt1.description + instructions
     end
   end
 
@@ -65,6 +93,20 @@ describe Event do
       event.end
       event.reload.event_status.should be_false
     end
+
+    it "should leave all players" do
+      player
+      event.players.length.should == 1
+      event.end
+      event.players.where("end_time is null").length.should == 0
+    end
+
+    it "should mark a player's end time" do
+      player.end_time.should be_nil
+      event.end
+      player.reload.end_time.should_not be_nil
+    end
+
   end
 
 end

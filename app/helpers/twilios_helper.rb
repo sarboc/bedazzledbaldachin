@@ -5,15 +5,21 @@ module TwiliosHelper
     # message = params[:Body]
 
     # see if a player exists
-    player = Player.find_by_phone(phone)
+    player = Player.where("end_time is null").find_by_phone(phone)
 
 
 
     if player
       # if player joined via passphrase, the next text gets stored as their name
-      if player.name == "passphrase_joiner"
+      if player.name == "passphrase joiner"
         player.update_attributes(name: message)
-        "Welcome, #{player.name}!"
+
+        if player.event.event_status == true
+          player.send_text("Welcome #{player.name}! Please stay tuned for your first prompt. Text 'q' at any time to quit the game.")
+          "#{player.get_new_prompt} Respond with 'd' when done or 'p' to pass."
+        else
+          "Welcome #{player.name}! Please stay tuned for your first prompt. Text 'q' at any time to quit the game."
+        end
       else
         # person belongs to a game and has a name, so send them a message
         case message.downcase
@@ -33,7 +39,7 @@ module TwiliosHelper
       end
     else
       # player doesn't belong to a game; see if they are trying to join an event
-      event = Event.find_by_wordnik(message.downcase)
+      event = Event.where("event_status is not false").find_by_wordnik(message.downcase)
 
       # if an event exists with that passphrase, add the person as a player
       if event
@@ -41,7 +47,7 @@ module TwiliosHelper
 
       # else, send them a message about our app
       else
-        "We don't know who you are. Sorry. Visit www.lederfeier.com to learn more."
+        "Your party as ended or you're not part of a party. Sorry. Visit www.lederfeier.com to learn more."
       end
     end
 
@@ -63,25 +69,26 @@ module TwiliosHelper
   end
 
   def help_message
-    "Respond with 'd' to mark a prompt as done, 'p' to pass a prompt, 'q' to quit the game."
+    "Respond with 'y' to accept an invitation, 'd' to mark a prompt as done, 'p' to pass a prompt, 'q' to quit the game."
   end
 
   def leave(player)
-    # mark end time for user
-
-    leave_text = "Awww sorry to see you go!  Thanks for playing Leide Feier - see you next time!"
-
-    # assign NOW to player's end time (the actual DB)
-    player.update_attributes(end_time: Time.now)
-    # send some goodbye text (in a 'constant', above for easy access)
-    leave_text
+    player.leave
+    "Awww sorry to see you go! Thanks for playing Lederfeier - see you next time!"
   end
 
   def accept(player)
     # change player accepted to true
     unless player.accepted
       player.accept_invite
-      "Welcome #{player.name}! Please stay tuned for your first prompt. Text 'q' at any time to quit the game."
+
+      if player.event.event_status == true
+        player.send_text("Welcome #{player.name}! Please stay tuned for your first prompt. Text 'q' at any time to quit the game.")
+        "#{player.get_new_prompt} Respond with 'd' when done or 'p' to pass."
+      else
+        "Welcome #{player.name}! Please stay tuned for your first prompt. Text 'q' at any time to quit the game."
+      end
+
     else
       "You've already joined the game. If you want to leave, respond with 'd'."
     end
@@ -95,8 +102,9 @@ module TwiliosHelper
 
   def random_message(player)
     # if user has not accepted, send message with ways to join
+
     # if user has accepted, send message with ways to leave
-    "I don't know how to do that. Please respond with 'yes' to accept an invitation"
+    "I don't know how to do that. Please respond with 'h' for help."
   end
 
 end

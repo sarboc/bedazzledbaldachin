@@ -1,8 +1,11 @@
 # Place all the behaviors and hooks related to the matching controller here.
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
+
+_
 $ ->
   $event_id = $('#event_id').val()
+  playerInfo = _.template('<tr><td><%= item.name %></td><td><%= item.phone %></td><td><%= item.accepted ? "Accepted" : "Pending" %></td></tr>')
 
   ajaxRequest = (type) ->
     $.ajax( "/events/#{$event_id}.json",
@@ -12,9 +15,9 @@ $ ->
   updatePlayerList = (data) ->
     $('#player-list table tbody').empty()
     for item in data
-      status = "Accepted" if item.accepted == true
-      status = "Pending" if item.accepted == false
-      $('#player-list table tbody').append('<tr>' + '<td>' + item.name + '</td><td>' + item.phone + '</td><td>' + status + '</td></tr>' )
+      # status = "Accepted" if item.accepted == true
+      # status = "Pending" if item.accepted == false
+      $('#player-list table tbody').append(playerInfo({item: item}))
 
   checkPlayers = () ->
     ajaxRequest("GET").done (data) ->
@@ -28,23 +31,14 @@ $ ->
     $("#name").val("")
     $("#phone").val("")
 
-    $.post("/players", params).done ->
-      updatePlayerList ajaxRequest("GET")
+    $.post("/players", params).done (data) ->
+      $('#player-list table tbody').append(playerInfo({item: data}))
 
-  $('#party-btn').click ->
-    btn = $('#party-btn')
-    if btn.data("status") is "start"
-      btn.data("status", "end")
-      btn.removeClass("btn-success")
-      btn.addClass("btn-danger")
-      btn.text("End the party")
-      ajaxRequest("PUT")
-    else if btn.data("status") is "end"
-      btn.data("status", "start")
-      btn.addClass("btn-success")
-      btn.removeClass("btn-danger")
-      btn.text("Start the party again!")
-      ajaxRequest("PUT")
+  $('#party-start-btn').click ->
+    event.preventDefault()
+    ajaxRequest("PUT")
+    $('#party-start-btn').addClass("hide")
+    $('#party-stop-btn').removeClass("hide")
 
   $('#player-list').each ->
     checkPlayers()

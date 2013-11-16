@@ -3,6 +3,45 @@ require 'spec_helper'
 describe Player do
   self.instance_exec &$test_vars
 
+  it "should have many event_prompts" do
+    player.should respond_to(:event_prompts)
+  end
+
+  it "should have many prompts" do
+    player.should respond_to(:prompts)
+  end
+
+  it "should have one event" do
+    player.should respond_to(:event)
+  end
+
+  it "should require phone" do
+    Player.all.length.should == 0
+    player = Player.new
+    player.event = event
+    player.name = "Sara"
+    player.save
+    Player.all.length.should == 0
+  end
+
+  it "should require name" do
+    Player.all.length.should == 0
+    player = Player.new
+    player.event = event
+    player.phone = phone
+    player.save
+    Player.all.length.should == 0
+  end
+
+  it "should require event_id" do
+    Player.all.length.should == 0
+    player = Player.new
+    player.phone = phone
+    player.name = "Sara"
+    player.save
+    Player.all.length.should == 0
+  end
+
   describe "get_new_prompt" do
     it "should add a new event_prompt for the player" do
       party.prompts << prompt1
@@ -33,8 +72,8 @@ describe Player do
       Player.all.length.should == 1
     end
 
-    it "should have a name of 'passphrase_joiner'" do
-      Player.create_by_passphrase(event, invalid_phone).name.should == "passphrase_joiner"
+    it "should have a name of 'passphrase joiner'" do
+      Player.create_by_passphrase(event, invalid_phone).name.should == "passphrase joiner"
     end
   end
 
@@ -70,6 +109,21 @@ describe Player do
       player.reload.phone.should == clean_number
     end
 
+  end
+
+  describe "send text" do
+    it "should send a message to the player's phone" do
+      player.send_text("Hello")
+      open_last_text_message_for player.phone
+      current_text_message.should have_body "Hello"
+    end
+  end
+
+  describe "leave" do
+    it "should set the end time for a player" do
+      player.leave
+      player.reload.end_time.should_not be_nil
+    end
   end
 
 end
