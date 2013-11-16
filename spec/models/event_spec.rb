@@ -65,6 +65,10 @@ describe Event do
       event.end
       event.reload.event_status.should be_false
     end
+
+    it "should leave all players" do
+
+    end
   end
 
 end

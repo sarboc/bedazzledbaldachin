@@ -51,12 +51,11 @@ class EventsController < ApplicationController
     # if a party has already been started, stop it
     elsif @event.event_status == true
       @event.end
-
-    # if a party has been stopped, restart it
-    elsif @event.event_status == false
-      @event.start
     end
 
-    render json: @event
+    respond_to do |format|
+      format.html {redirect_to events_path}
+      format.json {render json: @event}
+    end
   end
 end

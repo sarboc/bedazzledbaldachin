@@ -31,20 +31,11 @@ $ ->
     $.post("/players", params).done ->
       updatePlayerList ajaxRequest("GET")
 
-  $('#party-btn').click ->
-    btn = $('#party-btn')
-    if btn.data("status") is "start"
-      btn.data("status", "end")
-      btn.removeClass("btn-success")
-      btn.addClass("btn-danger")
-      btn.text("End the party")
-      ajaxRequest("PUT")
-    else if btn.data("status") is "end"
-      btn.data("status", "start")
-      btn.addClass("btn-success")
-      btn.removeClass("btn-danger")
-      btn.text("Start the party again!")
-      ajaxRequest("PUT")
+  $('#party-start-btn').click ->
+    event.preventDefault()
+    ajaxRequest("PUT")
+    $('#party-start-btn').addClass("hide")
+    $('#party-stop-btn').removeClass("hide")
 
   $('#player-list').each ->
     checkPlayers()

@@ -67,3 +67,7 @@ body {
   height: 75px;
   font-size: 22px;
 }
+
+.hidden {
+  display: none;
+}

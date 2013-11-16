@@ -19,7 +19,12 @@
     </div>
   </div>
 </div>
-<button id="party-btn" class="btn btn-success btn-big" data-status="start" value="<%= @id %>">Get this party started!</button>
+<% unless @event.event_status == false %>
+  <%= button_to "Get this party started!", "/", class: "btn btn-success btn-big #{'hide' if @event.event_status == true}", id: "party-start-btn", value: "#{@id}" %>
+
+  <%= button_to "Stop the party", event_path(@id), method: "put", class: "btn btn-danger btn-big #{'hide' if @event.event_status == nil}", id: "party-stop-btn" %>
+<% end %>
+
 <div id="player-list">
   <h4>Invited Players</h4>
   <table class="table">
