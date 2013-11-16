@@ -149,8 +149,8 @@ describe TwiliosHelper do
 
       it "should treat the next message as a name" do
         parse_message(invalid_phone, event.wordnik)
-        sara = Player.last
-        parse_message(sara.phone, "Sara").should == "Welcome, Sara!"
+        player = Player.last
+        parse_message(player.phone, "Sara").should == "Welcome Sara! Please stay tuned for your first prompt. Text 'q' at any time to quit the game."
       end
 
       it "should treat a player normally after a name is sent" do
@@ -158,6 +158,11 @@ describe TwiliosHelper do
         parse_message(invalid_phone, "Sara")
         parse_message(invalid_phone, "done").should == no_prompts_message
         parse_message(invalid_phone, "y").should == already_accepted_message
+      end
+
+      it "should not allow a player to join if the event has ended" do
+        event.end
+        parse_message(invalid_phone, event.wordnik).should == unknown_player_text
       end
 
     end

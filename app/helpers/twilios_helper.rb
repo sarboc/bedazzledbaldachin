@@ -39,7 +39,7 @@ module TwiliosHelper
       end
     else
       # player doesn't belong to a game; see if they are trying to join an event
-      event = Event.find_by_wordnik(message.downcase)
+      event = Event.where("event_status is not false").find_by_wordnik(message.downcase)
 
       # if an event exists with that passphrase, add the person as a player
       if event
