@@ -25,6 +25,9 @@ class Event < ActiveRecord::Base
   def end
     self.end_time = Time.now
     self.event_status = false
+    self.players.where("end_time is null").each do |player|
+      player.update_attributes(end_time: Time.now)
+    end
     self.save
     # set end time for any open players
   end

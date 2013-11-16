@@ -3,6 +3,45 @@ require 'spec_helper'
 describe Player do
   self.instance_exec &$test_vars
 
+  it "should have many event_prompts" do
+    player.should respond_to(:event_prompts)
+  end
+
+  it "should have many prompts" do
+    player.should respond_to(:prompts)
+  end
+
+  it "should have one event" do
+    player.should respond_to(:event)
+  end
+
+  it "should require phone" do
+    Player.all.length.should == 0
+    player = Player.new
+    player.event = event
+    player.name = "Sara"
+    player.save
+    Player.all.length.should == 0
+  end
+
+  it "should require name" do
+    Player.all.length.should == 0
+    player = Player.new
+    player.event = event
+    player.phone = phone
+    player.save
+    Player.all.length.should == 0
+  end
+
+  it "should require event_id" do
+    Player.all.length.should == 0
+    player = Player.new
+    player.phone = phone
+    player.name = "Sara"
+    player.save
+    Player.all.length.should == 0
+  end
+
   describe "get_new_prompt" do
     it "should add a new event_prompt for the player" do
       party.prompts << prompt1
