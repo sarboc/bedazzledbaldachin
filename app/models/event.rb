@@ -20,6 +20,11 @@ class Event < ActiveRecord::Base
     self.end_time = self.start_time + 60 * 60 * 3
     self.event_status = true
     self.save
+
+    # iterate through accepted players, sending the first prompt to each - the Party Starter!
+    self.players.where("accepted is true").each do |player|
+      player.send_text("#player.get_new_prompt} Respond with 'd' when done or 'p' to pass.")
+    end
   end
 
   def end
