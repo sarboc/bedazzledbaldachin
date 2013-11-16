@@ -5,7 +5,8 @@ class EventsController < ApplicationController
 # Get twilio-ruby from twilio.com/docs/ruby/install
 
   def index
-
+    events = Event.where("user_id = ?", current_user.id)
+    @events = events.sort_by { |k| k[:created_at] }.reverse
   end
 
   def new

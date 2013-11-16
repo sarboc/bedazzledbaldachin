@@ -1,9 +1,71 @@
-<%= form_for @event do |f| %>
-  <p>Select a rating:</p>
-  <div class="btn-group">
-  <%= f.select :rating_id, options_for_select([['PG', 1],['PG-13', 2],['R', 3]]), class: "form-control" %>
+<h3>Select party type</h3>
+<div class="panel-group" id="accordion">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">Dinner with Friends</a>
+      </h4>
+    </div>
+    <div id="collapseOne" class="panel-collapse collapse">
+      <div class="panel-body">
+        <%= form_for @event do |f| %>
+          <%= f.select :rating_id, options_for_select([['PG', 1],['PG-13', 2],['R', 3]]), class: "form-control" %>
+          <%= f.hidden_field :party_type_id, value: 1 %>
+          <%= f.hidden_field :user_id, value: current_user.id %>
+          <%= f.submit 'Continue', class: 'btn btn-success leder' %>
+        <% end %>
+      </div>
+    </div>
   </div>
-  <%= f.hidden_field :party_type_id, value: @party_type_id %>
-  <%= f.hidden_field :user_id, value: current_user.id %>
-  <%= f.submit 'Continue', class: 'btn btn-success leder' %>
-<% end %>
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">Raucous Gathering</a>
+      </h4>
+    </div>
+    <div id="collapseOne" class="panel-collapse collapse">
+      <div class="panel-body">
+        <%= form_for @event do |f| %>
+          <%= f.select :rating_id, options_for_select([['PG', 1],['PG-13', 2],['R', 3]]), class: "form-control" %>
+          <%= f.hidden_field :party_type_id, value: 2 %>
+          <%= f.hidden_field :user_id, value: current_user.id %>
+          <%= f.submit 'Continue', class: 'btn btn-success leder' %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">Fab Date Night</a>
+      </h4>
+    </div>
+    <div id="collapseOne" class="panel-collapse collapse">
+      <div class="panel-body">
+        <%= form_for @event do |f| %>
+          <%= f.select :rating_id, options_for_select([['PG', 1],['PG-13', 2],['R', 3]]), class: "form-control" %>
+          <%= f.hidden_field :party_type_id, value: 3 %>
+          <%= f.hidden_field :user_id, value: current_user.id %>
+          <%= f.submit 'Continue', class: 'btn btn-success leder' %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">Team Building</a>
+      </h4>
+    </div>
+    <div id="collapseOne" class="panel-collapse collapse">
+      <div class="panel-body">
+        <%= form_for @event do |f| %>
+          <%= f.select :rating_id, options_for_select([['PG', 1],['PG-13', 2],['R', 3]]), class: "form-control" %>
+          <%= f.hidden_field :party_type_id, value: 4 %>
+          <%= f.hidden_field :user_id, value: current_user.id %>
+          <%= f.submit 'Continue', class: 'btn btn-success leder' %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

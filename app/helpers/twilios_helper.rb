@@ -47,7 +47,7 @@ module TwiliosHelper
 
       # else, send them a message about our app
       else
-        "Your party as ended or you're not part of a party. Sorry. Visit www.lederfeier.com to learn more."
+        "Your party has ended or you're not part of a party. Sorry. Visit www.lederfeier.com to learn more."
       end
     end
 
