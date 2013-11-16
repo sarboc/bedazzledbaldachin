@@ -72,7 +72,7 @@ $test_vars = lambda {
   let(:no_prompts_message){"You don't have any prompts yet! Please wait until the party starts"}
   let(:instructions){" Respond with 'd' when done or 'p' to pass."}
   let(:leave_text) {"Awww sorry to see you go! Thanks for playing Lederfeier - see you next time!"}
-  let(:unknown_player_text) {"We don't know who you are. Sorry. Visit www.lederfeier.com to learn more."}
+  let(:unknown_player_text) {"Your party as ended or you're not part of a party. Sorry. Visit www.lederfeier.com to learn more."}
   let(:unknown_text) {"I don't know how to do that. Please respond with 'h' for help."}
   let(:help_message) {"Respond with 'y' to accept an invitation, 'd' to mark a prompt as done, 'p' to pass a prompt, 'q' to quit the game."}
 }

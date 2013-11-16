@@ -23,7 +23,7 @@ class Event < ActiveRecord::Base
 
     # iterate through accepted players, sending the first prompt to each - the Party Starter!
     self.players.where("accepted is true").each do |player|
-      player.send_text("#player.get_new_prompt} Respond with 'd' when done or 'p' to pass.")
+      player.send_text("#{player.get_new_prompt} Respond with 'd' when done or 'p' to pass.")
     end
   end
 

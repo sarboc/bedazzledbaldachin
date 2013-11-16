@@ -41,7 +41,7 @@ module TwiliosHelper
 
       # else, send them a message about our app
       else
-        "We don't know who you are. Sorry. Visit www.lederfeier.com to learn more."
+        "Your party as ended or you're not part of a party. Sorry. Visit www.lederfeier.com to learn more."
       end
     end
 
@@ -75,7 +75,14 @@ module TwiliosHelper
     # change player accepted to true
     unless player.accepted
       player.accept_invite
-      "Welcome #{player.name}! Please stay tuned for your first prompt. Text 'q' at any time to quit the game."
+
+      if player.event.event_status == true
+        player.send_text("Welcome #{player.name}! Text 'q' at any time to quit the game.")
+        "#{player.get_new_prompt} Respond with 'd' when done or 'p' to pass."
+      else
+        "Welcome #{player.name}! Please stay tuned for your first prompt. Text 'q' at any time to quit the game."
+      end
+
     else
       "You've already joined the game. If you want to leave, respond with 'd'."
     end

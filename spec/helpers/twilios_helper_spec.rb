@@ -101,6 +101,13 @@ describe TwiliosHelper do
       it "should respond with a welcome message" do
         parse_message(player.phone, "accept").should == accepted_message
       end
+
+      it "should send a message if the party has already started" do
+        party.prompts << prompt1
+        event.start
+        parse_message(player.phone, "yes")
+        player.reload.event_prompts.length.should == 1
+      end
     end
 
     describe "leave" do
