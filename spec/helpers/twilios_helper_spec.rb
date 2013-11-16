@@ -167,6 +167,16 @@ describe TwiliosHelper do
         parse_message(invalid_phone, event.wordnik).should == unknown_player_text
       end
 
+      it "should send a prompt if the event has already started" do
+        party.prompts << prompt1
+        event.start
+        parse_message(invalid_phone, event.wordnik)
+        player = Player.last
+        player.prompts.length.should == 0
+        parse_message(invalid_phone, "Sara")
+        player.reload.prompts.length.should == 1
+      end
+
     end
 
     describe "random message" do

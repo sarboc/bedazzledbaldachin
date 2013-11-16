@@ -54,7 +54,7 @@ class Player < ActiveRecord::Base
   end
 
   def self.create_by_passphrase(event, phone)
-    self.create(name: "passphrase_joiner", phone: phone, event_id: event.id)
+    self.create(name: "passphrase joiner", phone: phone, event_id: event.id)
   end
 
   def send_text(text)

@@ -11,7 +11,7 @@ module TwiliosHelper
 
     if player
       # if player joined via passphrase, the next text gets stored as their name
-      if player.name == "passphrase_joiner"
+      if player.name == "passphrase joiner"
         player.update_attributes(name: message)
 
         if player.event.event_status == true

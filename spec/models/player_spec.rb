@@ -72,8 +72,8 @@ describe Player do
       Player.all.length.should == 1
     end
 
-    it "should have a name of 'passphrase_joiner'" do
-      Player.create_by_passphrase(event, invalid_phone).name.should == "passphrase_joiner"
+    it "should have a name of 'passphrase joiner'" do
+      Player.create_by_passphrase(event, invalid_phone).name.should == "passphrase joiner"
     end
   end
 
