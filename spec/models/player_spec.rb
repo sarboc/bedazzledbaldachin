@@ -111,4 +111,11 @@ describe Player do
 
   end
 
+  describe "send text", focus: true do
+    it "should send a message to the player's phone" do
+      player = Player.create(event_id: event.id, phone: "9167476671", name: "Sara")
+      player.send_text("Hello")
+    end
+  end
+
 end

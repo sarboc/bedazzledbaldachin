@@ -53,6 +53,19 @@ class Player < ActiveRecord::Base
     self.create(name: "passphrase_joiner", phone: phone, event_id: event.id)
   end
 
+  def send_text(text)
+    account_sid    = ENV["account_sid"]
+    auth_token     = ENV["auth_token"]
+    client = Twilio::REST::Client.new account_sid, auth_token
+
+    account = client.account
+    message = account.sms.messages.create({
+      :from => '+16018034035',
+      :to => self.phone,
+      :body => text})
+    puts message
+  end
+
 end
 
 
