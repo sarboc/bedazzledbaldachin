@@ -1,4 +1,6 @@
 class Player < ActiveRecord::Base
+  require 'twilio-ruby'
+
   attr_accessible :name, :phone, :event_id, :start_time, :end_time, :user_passes, :accepted
 
   has_many :event_prompts, dependent: :destroy
@@ -6,8 +8,6 @@ class Player < ActiveRecord::Base
   belongs_to :event
 
   before_save :format_phone_number
-  # east to add RSPEC to this
-
 
   validates :name, presence: true
   validates :phone, presence: true
@@ -49,6 +49,10 @@ class Player < ActiveRecord::Base
     self.update_attributes(accepted: true, start_time: start_time)
   end
 
+  def leave
+    self.update_attributes(end_time: Time.now)
+  end
+
   def self.create_by_passphrase(event, phone)
     self.create(name: "passphrase_joiner", phone: phone, event_id: event.id)
   end
@@ -60,7 +64,7 @@ class Player < ActiveRecord::Base
 
     account = client.account
     message = account.sms.messages.create({
-      :from => '+16018034035',
+      :from => ENV["phone"],
       :to => self.phone,
       :body => text})
     puts message

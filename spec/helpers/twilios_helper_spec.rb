@@ -6,7 +6,12 @@ describe TwiliosHelper do
   describe "parse_message" do
 
     it "should return an error if a messager is not a player" do
-      parse_message(invalid_phone, "anything") == "We don't know who you are. Sorry. Visit www.lederfeier.com to learn more."
+      parse_message(invalid_phone, "anything") == unknown_player_text
+    end
+
+    it "should not know a player if player end_time is not null" do
+      player.leave
+      parse_message(player.phone, "next").should == unknown_player_text
     end
 
     describe "done and pass" do

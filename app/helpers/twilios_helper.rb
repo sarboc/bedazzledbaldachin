@@ -5,7 +5,7 @@ module TwiliosHelper
     # message = params[:Body]
 
     # see if a player exists
-    player = Player.find_by_phone(phone)
+    player = Player.where("end_time is null").find_by_phone(phone)
 
 
 
@@ -67,14 +67,8 @@ module TwiliosHelper
   end
 
   def leave(player)
-    # mark end time for user
-
-    leave_text = "Awww sorry to see you go!  Thanks for playing Leide Feier - see you next time!"
-
-    # assign NOW to player's end time (the actual DB)
-    player.update_attributes(end_time: Time.now)
-    # send some goodbye text (in a 'constant', above for easy access)
-    leave_text
+    player.leave
+    "Awww sorry to see you go!  Thanks for playing Leide Feier - see you next time!"
   end
 
   def accept(player)

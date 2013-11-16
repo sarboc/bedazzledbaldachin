@@ -3,7 +3,6 @@ ENV["RAILS_ENV"] ||= 'test'
 require File.expand_path("../../config/environment", __FILE__)
 require 'rspec/rails'
 require 'rspec/autorun'
-require 'shoulda-matchers'
 
 # Requires supporting ruby files with custom matchers and macros, etc,
 # in spec/support/ and its subdirectories.
@@ -41,7 +40,6 @@ RSpec.configure do |config|
   config.order = "random"
   config.include Devise::TestHelpers, type: :controller
   config.include ControllerHelpers, type: :controller
-
 end
 
 $test_vars = lambda {
@@ -74,5 +72,6 @@ $test_vars = lambda {
   let(:no_prompts_message){"You don't have any prompts yet! Please wait until the party starts"}
   let(:instructions){" Respond with 'd' when done or 'p' to pass."}
   let(:leave_text) {"Awww sorry to see you go!  Thanks for playing Leide Feier - see you next time!"}
+  let(:unknown_player_text) {"We don't know who you are. Sorry. Visit www.lederfeier.com to learn more."}
   let(:unknown_text) {"I don't know how to do that. Please respond with 'yes' to accept an invitation"}
 }

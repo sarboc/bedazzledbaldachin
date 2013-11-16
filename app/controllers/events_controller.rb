@@ -45,7 +45,7 @@ class EventsController < ApplicationController
       party_players = @event.players
       # iterate through players, sending the first prompt to each - the Party Starter!
       party_players.each do |this_player|
-        send_text(this_player.phone, this_player.get_new_prompt)
+        this_player.send_text("#{this_player.get_new_prompt} Respond with 'd' when done or 'p' to pass.")
       end
 
     # if a party has already been started, stop it

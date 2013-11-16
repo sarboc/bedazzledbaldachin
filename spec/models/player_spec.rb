@@ -111,10 +111,18 @@ describe Player do
 
   end
 
-  describe "send text", focus: true do
-    it "should send a message to the player's phone" do
-      player = Player.create(event_id: event.id, phone: "9167476671", name: "Sara")
-      player.send_text("Hello")
+  describe "send text" do
+    # it "should send a message to the player's phone" do
+    #   player.send_text("Hello")
+    #   open_last_text_message_for player.phone
+    #   current_text_message.should have_body "Hello"
+    # end
+  end
+
+  describe "leave" do
+    it "should set the end time for a player" do
+      player.leave
+      player.reload.end_time.should_not be_nil
     end
   end
 
