@@ -1,0 +1,92 @@
+<html>
+<head>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+  <script type="text/javascript">var NREUMQ=NREUMQ||[];NREUMQ.push(["mark","firstbyte",new Date().getTime()]);</script>
+  <link href='http://fonts.googleapis.com/css?family=Codystar' rel='stylesheet' type='text/css'>
+  <link href='http://fonts.googleapis.com/css?family=Sonsie+One' rel='stylesheet' type='text/css'>
+  <title>Lederfeier</title>
+  <%= stylesheet_link_tag    "homes", :media => "all" %>
+  <%= javascript_include_tag "homes" %>
+  <%= csrf_meta_tags %>
+    <script>
+      function flashtext(ele,col) {
+      var tmpColCheck = document.getElementById( ele ).style.color;
+
+        if (tmpColCheck === 'white') {
+          document.getElementById( ele ).style.color = col;
+        } else {
+          document.getElementById( ele ).style.color = 'white';
+        }
+      }
+
+    var x = 0;
+
+    myInterval = setInterval(function() {
+    flashtext('flashingtext','orange');
+    x++;
+      if (x == 10) {
+        window.clearInterval(myInterval);
+      };
+    }, 100);
+
+    </script>
+</head>
+<body>
+
+<nav class="navbar_lp navbar-default navbar navbar-fixed-top" role="navigation" >
+  <div class="navbar-header">
+    <a class="navbar-brand" href="#">
+      <div id="flashingtext" style="color: orange">
+      Lederfeier.
+      </div>
+    </a>
+  </div>
+  <div class="nav navbar-nav navbar-right" id='sitelinks'>
+      <h3> <a href="#screen2" style="color: #f39c12"> .about</a> </h3>
+      <h3> <a href="#screen3" style="color: #f39c12"> .team </a> </h3>
+  </div>
+</nav>
+
+
+<div id='screen1'>
+  <h2 class='h2_lp'> your party just got <strong>hotter. </strong></h2>
+  <div> <%= image_tag "productshot.png", class: "img-responsive"%> </div>
+  <button id='play_button' type="button" class="btn btn-info"> <a href="/events" style="color: #ecf0f1"> Play the game for free </a> </button>
+</div>
+
+<div id='screen2'>
+  <a name='screen2'>
+  <h2 class='h2_lp'>about this <strong>badass app.</strong></h2>
+  </a>
+  <p> Want to add some flavor to your dinner event, your first date or a party night with friends?  </p> <br>
+  Just use Lederfeier and let the fun begin!
+  How?
+  <br> <br> <br>
+  <div class='divider'></div>
+</div>
+
+<div id='screen3'>
+  <a name='screen3'>
+  <h2 class='h2_lp'>the <strong>creative bunch.</strong></h2>
+  </a>
+  <div class='pictures'>
+      <div class='teamimg'> <%= image_tag "saral.png", class: "teamimg" %> </div>
+      <div class='teamimg'> <%= image_tag "miriamn.png", class: "teamimg" %> </div>
+      <div class='teamimg'> <%= image_tag "cisco3.png", class: "teamimg" %> </div>
+      <div class='teamimg'> <%= image_tag "mikek.png", class: "teamimg" %> </div> <br> <br> <br>
+        <a href="http://www.linkedin.com/pub/sara-lafassett/1/193/a00" class='names'> Sara LaFasset </a>
+        <a href="http://www.linkedin.com/in/miriamneubauer" class='names'> Miriam Neubauer </a>
+        <a href="http://www.linkedin.com/in/falberini/" class='names'> Francisco Alberini </a>
+        <a href="http://www.linkedin.com/pub/mike-kyriacou/0/47/510" class='names'> Mike Kyriacou </a>
+  </div>
+  <br> <br> <br>
+  <div class='divider'></div>
+</div>
+
+
+</body>
+</html>
+
+
+
+
