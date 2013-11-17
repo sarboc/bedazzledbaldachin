@@ -59,22 +59,22 @@ prompts = Prompt.create [
   #15
   { description: "Close your eyes. Turn around. Guess the identity of another player by touch alone.", rating_id: 3 },
   #16
-  { description: "Describe your ideal weekend", rating_id: 1 },
+  { description: "Describe your ideal weekend.", rating_id: 1 },
   #17
   { description: "If you could make something that's not socially acceptable, acceptable. What would it be?", rating_id: 1 },
   #18
-  { description: "What's the most embarrasing thing that's happened to you during sex?", rating_id: 3 }
+  { description: "What's the most embarrasing thing that's happened to you during sex?", rating_id: 3 },
   #19
-  # { description: "", rating_id: },
-  # #20
-  # { description: "", rating_id: },
-  # #21
-  # { description: "", rating_id: },
-  # #22
-  # { description: "", rating_id: },
-  # #23
-  # { description: "", rating_id: },
-  # #24
+  { description: "Which fictional character would you most like to meet?", rating_id: 1 },
+  #20
+  { description: "What is your favorite curse word?", rating_id: 2 },
+  #21
+  { description: "If you could only ever drink one thing, what would it be?", rating_id: 1},
+  #22
+  { description: "What's the last tv show you binge watched?", rating_id: 1 },
+  #23
+  { description: "Would you rather have fur or scales?", rating_id: 1 }
+  #24
   # { description: "", rating_id: },
   # #25
   # { description: "", rating_id: },
@@ -92,25 +92,25 @@ prompts = Prompt.create [
 
 
 date = PartyType.find(1)
-date_prompts = [1, 2, 3, 5, 10, 11, 12, 13, 16, 17]
+date_prompts = [1, 2, 3, 5, 10, 11, 12, 13, 16, 17, 19, 20, 21, 22, 23]
 date_prompts.each do |prompt_id|
   date.prompts << Prompt.find(prompt_id)
 end
 
 dinner = PartyType.find(2)
-dinner_prompts = [1, 2, 3, 4, 5, 6, 8, 11, 12, 16, 17]
+dinner_prompts = [1, 2, 3, 4, 5, 6, 8, 11, 12, 16, 17, 19, 21, 22, 23]
 dinner_prompts.each do |prompt_id|
   dinner.prompts << Prompt.find(prompt_id)
 end
 
 party = PartyType.find(3)
-party_prompts = [2, 3, 5, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18]
+party_prompts = [2, 3, 5, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 22, 23]
 party_prompts.each do |prompt_id|
   party.prompts << Prompt.find(prompt_id)
 end
 
 team = PartyType.find(4)
-team_prompts = [1, 3, 4, 6, 8, 11, 12, 14, 16, 17]
+team_prompts = [1, 3, 4, 6, 8, 11, 12, 14, 16, 17, 19, 21, 22, 23]
 team_prompts.each do |prompt_id|
   team.prompts << Prompt.find(prompt_id)
 end
