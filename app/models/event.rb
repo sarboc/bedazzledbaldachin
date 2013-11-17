@@ -12,7 +12,6 @@ class Event < ActiveRecord::Base
   validates :party_type_id, presence: true
 
   validates :user_id, presence: true, uniqueness: { scope: :event_status }, if: :event_status
-  # validates_uniqueness_of :user_id, conditions: -> { where.not(event_status: false) }
 
   before_create :add_wordnik
 
