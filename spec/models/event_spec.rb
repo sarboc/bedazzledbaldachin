@@ -4,6 +4,40 @@ describe Event do
 
   self.instance_exec &$test_vars
 
+  it "should belong to user" do
+    event.should respond_to(:user)
+    event.user_id.should == user1.id
+    event.user.should == user1
+  end
+
+  it "should increment length counter when created" do
+    user.events.length.should == 0
+    event 
+    user.reload.event.length.should == 1
+  end
+
+  it "should allow a user to create event only if user not already in a current party" do
+    user1.events.length.should == 0
+    event
+    user1.reload.events.length.should == 1
+    event2
+    user1.reload.events.length.should == 1
+  end
+
+  it "should allow user to create event after prior event has ended" do
+    user1.events.length.should == 0
+    event.end
+    user1.reload.events.length.should == 1
+    event2
+    user1.reload.events.length.should == 2
+  end
+
+
+  it "should have a status automatically set to true" do
+    event.should respond_to(:event_status)
+    event.event_status.should == true
+  end
+
   it "should belong to party_type" do
     event.should respond_to(:party_type_id)
     event.party_type_id.should == party.id
