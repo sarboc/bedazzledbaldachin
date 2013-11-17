@@ -42,6 +42,33 @@ describe Player do
     Player.all.length.should == 0
   end
 
+  it "should create  player given name phone and event" do    
+    Player.all.length.should == 0
+    player1 = Player.create(name: name, phone: phone, event_id: event.id)
+    Player.all.length == 1
+  end
+
+  it "should not allow a player to join an event if already in an event" do
+    Player.all.length.should == 0
+    event
+    player1 = Player.create(name: name, phone: phone, event_id: event.id)
+    Player.all.length == 1
+    event3
+    player3 = Player.create(name: name, phone: phone, event_id: event3.id)
+    Player.all.length == 1
+  end
+
+  it "should alow a player to join an event after left an event" do
+    Player.all.length.should == 0
+    event
+    player1 = Player.create(name: name, phone: phone, event_id: event.id)
+    Player.all.length == 1
+    event.end
+    event3
+    player3 = Player.create(name: name, phone: phone, event_id: event3.id)
+    Player.all.length == 2
+  end
+
   describe "get_new_prompt" do
     it "should add a new event_prompt for the player" do
       party.prompts << prompt1

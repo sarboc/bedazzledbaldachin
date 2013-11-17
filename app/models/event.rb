@@ -11,6 +11,10 @@ class Event < ActiveRecord::Base
   validates :rating_id, presence: true
   validates :party_type_id, presence: true
 
+  # MK new validations start here
+  validates :user_id, presence: true
+  validates_uniqueness_of :user_id, conditions: -> { where.not(event_status: false) }
+
   # after_create :add_start_end_time
   before_create :add_wordnik
 

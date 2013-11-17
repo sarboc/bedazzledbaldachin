@@ -52,8 +52,35 @@ $test_vars = lambda {
   end
 
   let(:party) { PartyType.create(description: "Super fun party!") }
+
+  let (:user1) {user1 = User.create(name: "Jimmy", 
+    password: "123456789", 
+    password_confirmation: "123456789", 
+    email: "dude@dude.com")}
+
+  let (:user2) {user1 = User.create(name: "Johnny", 
+    password: "123456789", 
+    password_confirmation: "123456789", 
+    email: "another_dude@dude.com")}
+
+
+  # let(:party2) { PartyType.create(description: "Socially awkward party!") }
+
+  
+
+
+
   let(:rating) { Rating.create(name: "Super blush", value: 2) }
-  let(:event) { Event.create(party_type_id: party.id, rating_id: rating.id) }
+
+  # MK just added , user_id: user1
+  let(:event) { Event.create(party_type_id: party.id, rating_id: rating.id, user_id: user1) }
+
+  # MK a new event with a repeated user1
+  let(:event2) {Event.create(party_type_id: party.id, rating_id: rating.id, user_id: user1) }
+
+  # MK a new event with a repeated user1
+  let(:event3) {Event.create(party_type_id: party.id, rating_id: rating.id, user_id: user2) }
+
 
   let(:prompt1) {
     Prompt.create( description: "Do something fun!", rating_id: rating.id)

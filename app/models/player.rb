@@ -17,6 +17,12 @@ class Player < ActiveRecord::Base
   # validates :end_time, presence: true
 
 
+    
+  # MK start of new validations
+  validates_uniqueness_of :phone, conditions: -> { where(end_time: nil) }
+  
+
+
   def format_phone_number
     number = self.phone
 
