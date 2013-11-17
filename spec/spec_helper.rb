@@ -53,14 +53,15 @@ $test_vars = lambda {
 
   let(:party) { PartyType.create(description: "Super fun party!") }
 
-  let (:user1) { User.create(name: "Jimmy", 
-    password: "123456789", 
-    password_confirmation: "123456789", 
-    email: "dude@dude.com")}
+  let (:user1) { User.create(name: "Jimmy",
+    password: "123456789",
+    password_confirmation: "123456789",
+    email: "dude@dude.com",
+    phone: "+14151234567")}
 
-  let (:user2) { User.create(name: "Johnny", 
-    password: "123456789", 
-    password_confirmation: "123456789", 
+  let (:user2) { User.create(name: "Johnny",
+    password: "123456789",
+    password_confirmation: "123456789",
     email: "another_dude@dude.com")}
 
 
@@ -75,7 +76,7 @@ $test_vars = lambda {
   # MK a new event with a repeated user1
   let(:event2) {Event.create(party_type_id: party.id, rating_id: rating.id, user_id: user1.id) }
 
-  # MK a new event with a repeated user1  
+  # MK a new event with a repeated user1
   let(:event3) {Event.create(party_type_id: party.id, rating_id: rating.id, user_id: user2.id) }
 
 

@@ -11,38 +11,15 @@ class Event < ActiveRecord::Base
   validates :rating_id, presence: true
   validates :party_type_id, presence: true
 
-  # MK new validations start here
-  validates :user_id, presence: true
-  validates_uniqueness_of :user_id, conditions: -> { where(event_status: true) }
-  # validates_uniqueness_of :user_id, if: {}, unless: Proc.new { |a| a.event_status != false }
+  validates :user_id, presence: true, uniqueness: { scope: :event_status }, if: :event_status
+  # validates_uniqueness_of :user_id, conditions: -> { where.not(event_status: false) }
 
-  # after_create :add_start_end_time
   before_create :add_wordnik
-
-  # before_create :check_user_events
-
-  validate :check_user_events
-
-  # def check_user_events
-  #   status = Event.where("end_time is null").find_by_user_id(self.user_id)
-  #   if status
-  #     errors.add(:user_id, "That user already has an open event")
-  #   end
-  # end
-
-  # def is_true_or_nil?
-  #   if self.event_status == true || self.event_status == nil
-  #     true
-  #   else
-  #     false
-  #   end
-  # end
 
   def start
     # set start time to now
     self.start_time = Time.now
     self.end_time = self.start_time + 60 * 60 * 3
-    self.event_status = true
     self.save
 
     # iterate through accepted players, sending the first prompt to each - the Party Starter!
