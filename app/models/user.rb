@@ -10,6 +10,19 @@ class User < ActiveRecord::Base
 
   has_many :events
 
+  before_save :clean_phone_number
+
+  def clean_phone_number
+    number = self.phone
+
+    if number
+      unless number[0..1] == "+1"
+        number.gsub!(/[^0-9]/, '')
+        self.phone = "+1#{number}"
+      end
+    end
+  end
+
   #method tries to find an existing user by uidor create one with a random password otherwise
   def self.find_for_facebook_oauth(auth, signed_in_resource=nil)
   user = User.where(:provider => auth.provider, :uid => auth.uid).first

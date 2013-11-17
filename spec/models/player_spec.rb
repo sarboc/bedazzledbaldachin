@@ -42,7 +42,7 @@ describe Player do
     Player.all.length.should == 0
   end
 
-  it "should create  player given name phone and event" do    
+  it "should create player given name phone and event" do
     Player.all.length.should == 0
     player1 = Player.create(name: name, phone: phone, event_id: event.id)
     Player.all.length == 1
@@ -50,23 +50,18 @@ describe Player do
 
   it "should not allow a player to join an event if already in an event" do
     Player.all.length.should == 0
-    event
     player1 = Player.create(name: name, phone: phone, event_id: event.id)
-    Player.all.length == 1
-    event3
+    Player.all.length.should == 1
     player3 = Player.create(name: name, phone: phone, event_id: event3.id)
-    Player.all.length == 1
+    Player.all.length.should == 1
   end
 
   it "should alow a player to join an event after left an event" do
-    Player.all.length.should == 0
-    event
     player1 = Player.create(name: name, phone: phone, event_id: event.id)
-    Player.all.length == 1
+    Player.all.length.should == 1
     event.end
-    event3
     player3 = Player.create(name: name, phone: phone, event_id: event3.id)
-    Player.all.length == 2
+    Player.all.length.should == 2
   end
 
   describe "get_new_prompt" do
@@ -140,6 +135,7 @@ describe Player do
 
   describe "send text" do
     it "should send a message to the player's phone" do
+      player = Player.create(phone: "4751234567", name: name, event_id: event.id)
       player.send_text("Hello")
       open_last_text_message_for player.phone
       current_text_message.should have_body "Hello"
