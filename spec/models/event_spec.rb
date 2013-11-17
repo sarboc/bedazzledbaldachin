@@ -11,12 +11,12 @@ describe Event do
   end
 
   it "should increment length counter when created" do
-    user.events.length.should == 0
+    user1.events.length.should == 0
     event 
-    user.reload.event.length.should == 1
+    user1.reload.events.length.should == 1
   end
 
-  it "should allow a user to create event only if user not already in a current party" do
+  it "should not be allowed to have 2 active events" do
     user1.events.length.should == 0
     event
     user1.reload.events.length.should == 1
@@ -32,11 +32,6 @@ describe Event do
     user1.reload.events.length.should == 2
   end
 
-
-  it "should have a status automatically set to true" do
-    event.should respond_to(:event_status)
-    event.event_status.should == true
-  end
 
   it "should belong to party_type" do
     event.should respond_to(:party_type_id)
