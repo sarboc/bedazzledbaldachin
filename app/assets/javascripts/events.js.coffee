@@ -37,8 +37,8 @@ $ ->
   $('#party-start-btn').click ->
     event.preventDefault()
     ajaxRequest("PUT")
-    $('#party-start-btn').addClass("hide")
-    $('#party-stop-btn').removeClass("hide")
+    $('#party-start-btn').addClass("hidden")
+    $('#party-stop-btn').removeClass("hidden")
 
   $('#player-list').each ->
     checkPlayers()

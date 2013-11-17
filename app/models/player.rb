@@ -8,6 +8,7 @@ class Player < ActiveRecord::Base
   belongs_to :event
 
   before_save :clean_phone_number
+  before_create :clean_phone_number
 
   validates :name, presence: true
   validates :phone, presence: true, uniqueness: { scope: :end_time }, unless: :end_time

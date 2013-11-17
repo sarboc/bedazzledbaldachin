@@ -27,9 +27,9 @@
 </div>
 
 <% unless @event.event_status == false %>
-  <%= button_to "Get this party started!", "/", class: "btn btn-success btn-big #{'hide' if @event.event_status == true}", id: "party-start-btn", value: "#{@id}" %>
+  <%= button_to "Get this party started!", "/", class: "btn btn-success btn-big #{'hidden' unless @event.start_time == nil}", id: "party-start-btn", value: "#{@id}" %>
 
-  <%= button_to "Stop the party", event_path(@id), method: "put", class: "btn btn-danger btn-big #{'hide' if @event.event_status == nil}", id: "party-stop-btn" %>
+  <%= button_to "Stop the party", event_path(@id), method: "put", class: "btn btn-danger btn-big #{'hidden' if @event.event_status == true}", id: "party-stop-btn" %>
 <% end %>
 
 <div id="player-list">

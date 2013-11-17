@@ -64,6 +64,13 @@ describe Player do
     Player.all.length.should == 2
   end
 
+  it "should match a dirty phone number to a clean one" do
+    Player.create(name: name, phone: "9167483945", event_id: event.id)
+    Player.all.length.should == 1
+    Player.create(name: name, phone: "9167483945", event_id: event.id)
+    Player.all.length.should == 1
+  end
+
   describe "get_new_prompt" do
     it "should add a new event_prompt for the player" do
       party.prompts << prompt1
