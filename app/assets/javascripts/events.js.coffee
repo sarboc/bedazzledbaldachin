@@ -49,8 +49,7 @@ $ ->
   $('label').click ->
     $(this).addClass('active')
     $(this).siblings('.rating').removeClass('active')
-    console.log $(this).parent()
-    $('.panel-body > button').removeClass('hidden')
+    $('.leder').removeClass('hidden')
 
 
 
