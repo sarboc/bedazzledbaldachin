@@ -52,8 +52,33 @@ $test_vars = lambda {
   end
 
   let(:party) { PartyType.create(description: "Super fun party!") }
+
+  let (:user1) { User.create(name: "Jimmy",
+    password: "123456789",
+    password_confirmation: "123456789",
+    email: "dude@dude.com",
+    phone: "+14151234567")}
+
+  let (:user2) { User.create(name: "Johnny",
+    password: "123456789",
+    password_confirmation: "123456789",
+    email: "another_dude@dude.com")}
+
+
+  # let(:party2) { PartyType.create(description: "Socially awkward party!") }
+
   let(:rating) { Rating.create(name: "Super blush", value: 2) }
-  let(:event) { Event.create(party_type_id: party.id, rating_id: rating.id) }
+  let(:rating2) { Rating.create(name: "Church yawn", value: 1) }
+
+  # MK just added , user_id: user1
+  let(:event) { Event.create(party_type_id: party.id, rating_id: rating.id, user_id: user1.id) }
+
+  # MK a new event with a repeated user1
+  let(:event2) {Event.create(party_type_id: party.id, rating_id: rating.id, user_id: user1.id) }
+
+  # MK a new event with a repeated user1
+  let(:event3) {Event.create(party_type_id: party.id, rating_id: rating.id, user_id: user2.id) }
+
 
   let(:prompt1) {
     Prompt.create( description: "Do something fun!", rating_id: rating.id)
@@ -76,7 +101,7 @@ $test_vars = lambda {
   let(:no_prompts_message){"You don't have any prompts yet! Please wait until the party starts"}
   let(:instructions){" Respond with 'd' when done or 'p' to pass."}
   let(:leave_text) {"Awww sorry to see you go! Thanks for playing Lederfeier - see you next time!"}
-  let(:unknown_player_text) {"Your party as ended or you're not part of a party. Sorry. Visit www.lederfeier.com to learn more."}
+  let(:unknown_player_text) {"Your party has ended or you're not part of a party. Sorry. Visit www.lederfeier.com to learn more."}
   let(:unknown_text) {"I don't know how to do that. Please respond with 'h' for help."}
   let(:help_message) {"Respond with 'y' to accept an invitation, 'd' to mark a prompt as done, 'p' to pass a prompt, 'q' to quit the game."}
 }

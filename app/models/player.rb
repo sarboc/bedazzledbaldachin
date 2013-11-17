@@ -7,22 +7,20 @@ class Player < ActiveRecord::Base
   has_many :prompts, through: :event_prompts
   belongs_to :event
 
-  before_save :format_phone_number
+  before_validation :clean_phone_number
 
   validates :name, presence: true
-  validates :phone, presence: true
+  validates :phone, presence: true, uniqueness: { scope: :end_time }, unless: :end_time
   validates :event_id, presence: true
-  #validates :phone, :phone_number => {:ten_digits => true}
-  # validates :start_time, presence: true
-  # validates :end_time, presence: true
 
-
-  def format_phone_number
+  def clean_phone_number
     number = self.phone
 
-    unless number[0..1] == "+1"
-      number.gsub!(/[^0-9]/, '')
-      self.phone = "+1#{number}"
+    if number
+      unless number[0..1] == "+1"
+        number.gsub!(/[^0-9]/, '')
+        self.phone = "+1#{number}"
+      end
     end
   end
 

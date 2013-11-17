@@ -37,11 +37,18 @@ $ ->
   $('#party-start-btn').click ->
     event.preventDefault()
     ajaxRequest("PUT")
-    $('#party-start-btn').addClass("hide")
-    $('#party-stop-btn').removeClass("hide")
+    $('#party-start-btn').addClass("hidden")
+    $('#party-stop-btn').removeClass("hidden")
 
   $('#player-list').each ->
     checkPlayers()
     setInterval () ->
       checkPlayers()
     , 10000
+
+  $('label').click ->
+    $(this).addClass('active')
+    $(this).siblings('.rating').removeClass('active')
+    $(this).siblings('.leder').removeClass('hidden')
+
+

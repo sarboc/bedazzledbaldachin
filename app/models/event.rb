@@ -11,14 +11,14 @@ class Event < ActiveRecord::Base
   validates :rating_id, presence: true
   validates :party_type_id, presence: true
 
-  # after_create :add_start_end_time
+  validates :user_id, presence: true, uniqueness: { scope: :event_status }, if: :event_status
+
   before_create :add_wordnik
 
   def start
     # set start time to now
     self.start_time = Time.now
     self.end_time = self.start_time + 60 * 60 * 3
-    self.event_status = true
     self.save
 
     # iterate through accepted players, sending the first prompt to each - the Party Starter!

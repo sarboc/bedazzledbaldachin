@@ -4,7 +4,8 @@ Bedazzle::Application.routes.draw do
   devise_for :users, :controllers => { :omniauth_callbacks => "omniauth_callbacks" }
   resources :twilios
 
-  root to: "events#index"
+  root to: "homes#index"
+  # root to: "events#index"
   resources :events
   resources :players, :only => [:create]
 

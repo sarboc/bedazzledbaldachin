@@ -42,6 +42,35 @@ describe Player do
     Player.all.length.should == 0
   end
 
+  it "should create player given name phone and event" do
+    Player.all.length.should == 0
+    player1 = Player.create(name: name, phone: phone, event_id: event.id)
+    Player.all.length == 1
+  end
+
+  it "should not allow a player to join an event if already in an event" do
+    Player.all.length.should == 0
+    player1 = Player.create(name: name, phone: phone, event_id: event.id)
+    Player.all.length.should == 1
+    player3 = Player.create(name: name, phone: phone, event_id: event3.id)
+    Player.all.length.should == 1
+  end
+
+  it "should alow a player to join an event after left an event" do
+    player1 = Player.create(name: name, phone: phone, event_id: event.id)
+    Player.all.length.should == 1
+    event.end
+    player3 = Player.create(name: name, phone: phone, event_id: event3.id)
+    Player.all.length.should == 2
+  end
+
+  it "should match a dirty phone number to a clean one" do
+    Player.create(name: name, phone: "9167483945", event_id: event.id)
+    Player.all.length.should == 1
+    Player.create(name: name, phone: "9167483945", event_id: event.id)
+    Player.all.length.should == 1
+  end
+
   describe "get_new_prompt" do
     it "should add a new event_prompt for the player" do
       party.prompts << prompt1
@@ -77,7 +106,7 @@ describe Player do
     end
   end
 
-  describe "format_phone_number" do
+  describe "clean_phone_number" do
 
   	it "should handle a perfect phone number" do
       perfect_number = "4083072406"
@@ -113,6 +142,7 @@ describe Player do
 
   describe "send text" do
     it "should send a message to the player's phone" do
+      player = Player.create(phone: "4751234567", name: name, event_id: event.id)
       player.send_text("Hello")
       open_last_text_message_for player.phone
       current_text_message.should have_body "Hello"

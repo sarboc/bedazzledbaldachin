@@ -14,7 +14,7 @@ module TwiliosHelper
       if player.name == "passphrase joiner"
         player.update_attributes(name: message)
 
-        if player.event.event_status == true
+        if player.event.start_time
           player.send_text("Welcome #{player.name}! Please stay tuned for your first prompt. Text 'q' at any time to quit the game.")
           "#{player.get_new_prompt} Respond with 'd' when done or 'p' to pass."
         else
@@ -39,7 +39,7 @@ module TwiliosHelper
       end
     else
       # player doesn't belong to a game; see if they are trying to join an event
-      event = Event.where("event_status is not false").find_by_wordnik(message.downcase)
+      event = Event.where("event_status = ?", true).find_by_wordnik(message.downcase)
 
       # if an event exists with that passphrase, add the person as a player
       if event
@@ -82,7 +82,7 @@ module TwiliosHelper
     unless player.accepted
       player.accept_invite
 
-      if player.event.event_status == true
+      if player.event.start_time
         player.send_text("Welcome #{player.name}! Please stay tuned for your first prompt. Text 'q' at any time to quit the game.")
         "#{player.get_new_prompt} Respond with 'd' when done or 'p' to pass."
       else

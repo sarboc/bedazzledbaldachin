@@ -4,6 +4,32 @@ describe Event do
 
   self.instance_exec &$test_vars
 
+  it "should belong to user" do
+    event.should respond_to(:user)
+    event.user_id.should == user1.id
+    event.user.should == user1
+  end
+
+  it "should not have more than one active event per user" do
+    user1.events.length.should == 0
+    event
+    user1.reload.events.length.should == 1
+    event2
+    user1.reload.events.length.should == 1
+  end
+
+  it "should allow user to create event after prior event has ended" do
+    user1.events.length.should == 0
+    event.end
+    user1.reload.events.length.should == 1
+    event2
+    user1.reload.events.length.should == 2
+  end
+
+  it "should have a default status of true" do
+    event.event_status.should be_true
+  end
+
   it "should belong to party_type" do
     event.should respond_to(:party_type_id)
     event.party_type_id.should == party.id
@@ -76,6 +102,7 @@ describe Event do
 
     it "should send a prompt to all accepted players" do
       party.prompts << prompt1
+      player = Player.create(phone: "3455678576", name: name, event_id: event.id)
       player.accept_invite
       event.start
       open_last_text_message_for player.phone
