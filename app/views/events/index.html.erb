@@ -22,7 +22,7 @@
       <td><%= link_to "#{event.wordnik}", event_path(event.id) %></td>
       <td>
         <%= "Pending" if event.start_time == nil %>
-        <%= "Started" if event.end_time == true %>
+        <%= "Started" if event.event_status == true %>
         <%= "Done" if event.event_status == false %>
       </td>
       <td><%= event.players.count %></td>
