@@ -1,3 +1,9 @@
+<% unless current_user.phone %>
+  <div class="alert alert-danger">
+    <p>We don't know your phone number! Be sure to add yourself as a player or <%= link_to "update your user info", edit_user_registration_path %>, and we'll auto-invite you in the future.</p>
+  </div>
+<% end %>
+
 <div class="panel panel-success">
   <div class="panel-heading">
     <h3 class="panel-title">Invite Players:</h3>
