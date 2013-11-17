@@ -10,6 +10,8 @@
  *
  *= require bootstrap.min.css
  *= require bootstrap-formhelpers.min.css
+ *= require homes.css
+ *= require sessions.css
  *= require_self
  *= require_tree .
  */
