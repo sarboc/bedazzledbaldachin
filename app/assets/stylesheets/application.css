@@ -58,6 +58,7 @@ body {
   margin-top: 3px;
   margin-bottom: 3px;
   height: 50px;
+  font-size: 22px;
 }
 
 .btn-big{
@@ -78,4 +79,26 @@ body {
 
 .passphrase {
   padding-bottom: 10px;
+}
+
+input[type="radio"] {
+    display: none;
+}
+
+.rating {
+  width: 75px;
+}
+
+.rating-panel {
+  margin: auto;
+  width: 100%;
+}
+
+.rating .input-checked{
+  background-color:#404040;
+  color:#F7F7F7;
+}
+
+.fa{
+  float: right;
 }
