@@ -1,37 +1,24 @@
-<html>
-<head>
-  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-  <script type="text/javascript">var NREUMQ=NREUMQ||[];NREUMQ.push(["mark","firstbyte",new Date().getTime()]);</script>
-  <link href='http://fonts.googleapis.com/css?family=Codystar' rel='stylesheet' type='text/css'>
-  <link href='http://fonts.googleapis.com/css?family=Sonsie+One' rel='stylesheet' type='text/css'>
-  <title>Lederfeier</title>
-  <%= stylesheet_link_tag    "homes", :media => "all" %>
-  <%= javascript_include_tag "homes" %>
-  <%= csrf_meta_tags %>
-    <script>
-      function flashtext(ele,col) {
-      var tmpColCheck = document.getElementById( ele ).style.color;
+<script>
+  function flashtext(ele,col) {
+  var tmpColCheck = document.getElementById( ele ).style.color;
 
-        if (tmpColCheck === 'white') {
-          document.getElementById( ele ).style.color = col;
-        } else {
-          document.getElementById( ele ).style.color = 'white';
-        }
-      }
+    if (tmpColCheck === 'white') {
+      document.getElementById( ele ).style.color = col;
+    } else {
+      document.getElementById( ele ).style.color = 'white';
+    }
+  }
 
-    var x = 0;
+var x = 0;
 
-    myInterval = setInterval(function() {
-    flashtext('flashingtext','orange');
-    x++;
-      if (x == 10) {
-        window.clearInterval(myInterval);
-      };
-    }, 100);
-
-    </script>
-</head>
-<body>
+myInterval = setInterval(function() {
+flashtext('flashingtext','orange');
+x++;
+  if (x == 10) {
+    window.clearInterval(myInterval);
+  };
+}, 100);
+</script>
 
 <nav class="navbar_lp navbar-default navbar navbar-fixed-top" role="navigation" >
   <div class="navbar-header">
@@ -82,10 +69,6 @@
   <br> <br> <br>
   <div class='divider'></div>
 </div>
-
-
-</body>
-</html>
 
 
 
