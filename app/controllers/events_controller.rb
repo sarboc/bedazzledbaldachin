@@ -1,8 +1,6 @@
 class EventsController < ApplicationController
   before_filter :authenticate_user!
-  require 'rubygems'          # This line not needed for ruby > 1.8
   require 'twilio-ruby'
-# Get twilio-ruby from twilio.com/docs/ruby/install
 
   def index
     events = Event.where("user_id = ?", current_user.id)
@@ -40,7 +38,7 @@ class EventsController < ApplicationController
     @event = Event.find(@id)
 
     # if a party has never been started
-    if @event.event_status == nil
+    if @event.start_time == nil
       @event.start
 
     # if a party has already been started, stop it

@@ -7,23 +7,13 @@ class Player < ActiveRecord::Base
   has_many :prompts, through: :event_prompts
   belongs_to :event
 
-  before_save :format_phone_number
+  before_save :clean_phone_number
 
   validates :name, presence: true
-  validates :phone, presence: true
+  validates :phone, presence: true, uniqueness: { scope: :end_time }, unless: :end_time
   validates :event_id, presence: true
-  #validates :phone, :phone_number => {:ten_digits => true}
-  # validates :start_time, presence: true
-  # validates :end_time, presence: true
 
-
-    
-  # MK start of new validations
-  validates_uniqueness_of :phone, conditions: -> { where(end_time: nil) }
-  
-
-
-  def format_phone_number
+  def clean_phone_number
     number = self.phone
 
     unless number[0..1] == "+1"

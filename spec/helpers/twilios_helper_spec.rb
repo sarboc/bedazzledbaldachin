@@ -68,6 +68,18 @@ describe TwiliosHelper do
         parse_message(player.phone, "pass").should == prompt1.description + instructions
         player.reload.event_prompts.length.should == 2
       end
+
+      it "should know the command 'd'" do
+        parse_message(player.phone, "d").should == no_prompts_message
+      end
+
+      it "should know the command 'complete'" do
+        parse_message(player.phone, "complete").should == no_prompts_message
+      end
+
+      it "should know the command 'completed'" do
+        parse_message(player.phone, "completed").should == no_prompts_message
+      end
     end
 
     describe "yes-ish things" do
@@ -122,6 +134,14 @@ describe TwiliosHelper do
         player.end_time.should be_nil
         parse_message(player.phone, "leave")
         player.reload.end_time.should_not be_nil
+      end
+
+      it "should know the command 'q'" do
+        parse_message(player.phone, "q").should == leave_text
+      end
+
+      it "should know the command 'quit'" do
+        parse_message(player.phone, "quit").should == leave_text
       end
 
     end

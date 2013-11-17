@@ -47,47 +47,47 @@ prompts = Prompt.create [
   #9
   { description: "Switch tops with another party member of your choosing.", rating_id: 3 },
   #10
-  { description: "If you are currently wearing underpants, describe them to the group. If not, explain why.", rating_id: 3 }
+  { description: "If you are currently wearing underpants, describe them to the group. If not, explain why.", rating_id: 3 },
   #11
-  { description: "Describe the best meal you've ever had", rating_id: 1 }
+  { description: "Describe the best meal you've ever had", rating_id: 1 },
   #12
-  { description: "You just won the lottery and never have to work again. What do you do?", rating_id: 1 }
+  { description: "You just won the lottery and never have to work again. What do you do?", rating_id: 1 },
   #13
-  { description: "Describe a daring act you've performed with a romantic partner", rating_id: 3 }
+  { description: "Describe a daring act you've performed with a romantic partner", rating_id: 3 },
   #14
-  { description: "The person on your right is now known as 'Fancy Pants'. Don't call him/her anything else for the rest of the night", rating_id: 2 }
+  { description: "The person on your right is now known as 'Fancy Pants'. Don't call him/her anything else for the rest of the night", rating_id: 2 },
   #15
-  { description: "Close your eyes. Turn around. Guess the identity of another player by touch alone.", rating_id: 3 }
+  { description: "Close your eyes. Turn around. Guess the identity of another player by touch alone.", rating_id: 3 },
   #16
-  { description: "Describe your ideal weekend", rating_id: 1 }
+  { description: "Describe your ideal weekend", rating_id: 1 },
   #17
-  { description: "If you could make something that's not socially acceptable, acceptable. What would it be?", rating_id: 1 }
+  { description: "If you could make something that's not socially acceptable, acceptable. What would it be?", rating_id: 1 },
   #18
   { description: "What's the most embarrasing thing that's happened to you during sex?", rating_id: 3 }
   #19
-  { description: "", rating_id: }
-  #20
-  { description: "", rating_id: }
-  #21
-  { description: "", rating_id: }
-  #22
-  { description: "", rating_id: }
-  #23
-  { description: "", rating_id: }
-  #24
-  { description: "", rating_id: }
-  #25
-  { description: "", rating_id: }
-  #26
-  { description: "", rating_id: }
-  #27
-  { description: "", rating_id: }
-  #28
-  { description: "", rating_id: }
-  #29
-  { description: "", rating_id: }
-  #30
-  { description: "", rating_id: }
+  # { description: "", rating_id: },
+  # #20
+  # { description: "", rating_id: },
+  # #21
+  # { description: "", rating_id: },
+  # #22
+  # { description: "", rating_id: },
+  # #23
+  # { description: "", rating_id: },
+  # #24
+  # { description: "", rating_id: },
+  # #25
+  # { description: "", rating_id: },
+  # #26
+  # { description: "", rating_id: },
+  # #27
+  # { description: "", rating_id: },
+  # #28
+  # { description: "", rating_id: },
+  # #29
+  # { description: "", rating_id: },
+  # #30
+  # { description: "", rating_id: }
 ]
 
 

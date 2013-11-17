@@ -10,13 +10,7 @@ describe Event do
     event.user.should == user1
   end
 
-  it "should increment length counter when created" do
-    user1.events.length.should == 0
-    event 
-    user1.reload.events.length.should == 1
-  end
-
-  it "should not be allowed to have 2 active events" do
+  it "should not have more than one active event per user" do
     user1.events.length.should == 0
     event
     user1.reload.events.length.should == 1
@@ -32,6 +26,9 @@ describe Event do
     user1.reload.events.length.should == 2
   end
 
+  it "should have a default status of true" do
+    event.event_status.should be_true
+  end
 
   it "should belong to party_type" do
     event.should respond_to(:party_type_id)
@@ -105,6 +102,7 @@ describe Event do
 
     it "should send a prompt to all accepted players" do
       party.prompts << prompt1
+      player = Player.create(phone: "3455678576", name: name, event_id: event.id)
       player.accept_invite
       event.start
       open_last_text_message_for player.phone
