@@ -8,6 +8,8 @@ class User < ActiveRecord::Base
   attr_accessible :email, :phone, :password, :password_confirmation, :remember_me, :name, :provider, :uid
   # attr_accessible :title, :body
 
+  has_many :events
+
   #method tries to find an existing user by uidor create one with a random password otherwise
   def self.find_for_facebook_oauth(auth, signed_in_resource=nil)
   user = User.where(:provider => auth.provider, :uid => auth.uid).first
