@@ -86,3 +86,8 @@ input[type="radio"] {
 .fa{
   float: right;
 }
+
+.alert h3 {
+  margin: 0;
+  padding: 5px;
+}

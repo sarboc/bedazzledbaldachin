@@ -12,15 +12,21 @@
  *= require bootstrap-formhelpers.min.css
  */
 
-body {
+#home-page {
   text-align: center;
   background-size: contain;
   color: black;
   font-family: "proxima-nova-1","proxima-nova-2",sans-serif;
 }
 
+.container {
+  width: auto;
+  margin: auto;
+  background-color: white;
+  padding: 0;
+}
 
- h3 {
+ #sitelinks h3 {
   font-family: 'Sonsie One', cursive;
   padding: 10px;
   font-size: 16px;

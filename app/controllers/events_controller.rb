@@ -5,6 +5,7 @@ class EventsController < ApplicationController
   def index
     events = Event.where("user_id = ?", current_user.id)
     @events = events.sort_by { |k| k[:created_at] }.reverse
+    @current_event = events.find_by_event_status(true)
   end
 
   def new
