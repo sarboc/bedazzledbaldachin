@@ -99,7 +99,7 @@ describe Player do
     end
   end
 
-  describe "format_phone_number" do
+  describe "clean_phone_number" do
 
   	it "should handle a perfect phone number" do
       perfect_number = "4083072406"
