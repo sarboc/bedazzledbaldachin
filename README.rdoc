@@ -6,7 +6,7 @@ Your party just got hotter
 It's an awesome party app that sends you conversation starters and dares
 
 ###Who should I play with?
-Everybody. Nobody.
+Somebody. Everybody. Nobody.
 
 ###How do I play this badass app?
 Head on over to [http://leder-feier.herokuapp.com/](http://leder-feier.herokuapp.com/).
