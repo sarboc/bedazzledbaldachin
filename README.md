@@ -15,6 +15,9 @@ Head on over to [http://leder-feier.herokuapp.com/](http://leder-feier.herokuapp
 Lederfeier was built by four students during the course of the Web Development Immersive program at General Assembly, San Francisco. They are:
 
 Francisco Alberini [@francisco](http://www.github.com)
+
 Mike Kyriacou [@mikekyriacou](https://github.com/mikekyriacou)
+
 Miriam Neubauer [@MiriamNeubauer](https://github.com/MiriamNeubauer)
+
 Sara LaFassett [@sarlaf](http://github.com/sarlaf)
