@@ -1,7 +1,7 @@
 class HomesController < ApplicationController
+  before_filter :check_for_mobile
 
-def index
-
-end
+  def index
+  end
 
 end
