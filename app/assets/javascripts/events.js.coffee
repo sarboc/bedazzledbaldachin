@@ -49,6 +49,7 @@ $ ->
   $('label').click ->
     $(this).addClass('active')
     $(this).siblings('.rating').removeClass('active')
-    $(this).siblings('.leder').removeClass('hidden')
+    $('.leder').removeClass('hidden')
+
 
 
